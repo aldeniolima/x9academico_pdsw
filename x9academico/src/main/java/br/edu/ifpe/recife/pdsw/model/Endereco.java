@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -53,8 +54,10 @@ public class Endereco implements Serializable {
     @NotNull
     @Column(name = "cep")
     private String cep;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enderecoIdendereco")
-    private List<Usuario> usuarioList;
+   
+    
+     @OneToOne(mappedBy = "endereco", optional = false)
+    private Usuario usuario;
 
     public Endereco() {
     }
@@ -120,13 +123,7 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
+   
 
     @Override
     public int hashCode() {
@@ -151,6 +148,14 @@ public class Endereco implements Serializable {
     @Override
     public String toString() {
         return "br.edu.ifpe.recife.pdsw.model.Endereco[ idendereco=" + idendereco + " ]";
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 }

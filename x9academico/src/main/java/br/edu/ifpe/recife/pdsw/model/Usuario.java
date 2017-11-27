@@ -3,8 +3,10 @@ package br.edu.ifpe.recife.pdsw.model;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -81,17 +83,22 @@ public abstract class Usuario implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "data_nascimento")
     private String dataNascimento;
+    /*
     @JoinColumn(name = "endereco_idendereco", referencedColumnName = "idendereco")
     @ManyToOne(optional = false)
     private Endereco enderecoIdendereco;
+     */
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
+    private Endereco endereco;
 
-   /* @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
+    /* @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Administrador administrador;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Professor professor;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Responsavel responsavel;*/
-
     public Usuario() {
     }
 
@@ -201,7 +208,15 @@ public abstract class Usuario implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-   /* public Administrador getAdministrador() {
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    /* public Administrador getAdministrador() {
         return administrador;
     }
 
@@ -216,7 +231,8 @@ public abstract class Usuario implements Serializable {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
-*/
+     */
+ /*
     public Endereco getEnderecoIdendereco() {
         return enderecoIdendereco;
     }
@@ -224,6 +240,7 @@ public abstract class Usuario implements Serializable {
     public void setEnderecoIdendereco(Endereco enderecoIdendereco) {
         this.enderecoIdendereco = enderecoIdendereco;
     }
+     */
 
  /*  public Responsavel getResponsavel() {
         return responsavel;
@@ -232,7 +249,7 @@ public abstract class Usuario implements Serializable {
     public void setResponsavel(Responsavel responsavel) {
         this.responsavel = responsavel;
     }
-*/
+     */
     @Override
     public int hashCode() {
         int hash = 0;
