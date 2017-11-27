@@ -46,8 +46,8 @@ public class EditarProf extends HttpServlet {
         profEdit.setTelefone(telefone);
         profEdit.setLogin(profSessao.getLogin());
         profEdit.setIdusuario(profSessao.getIdusuario());
-        Endereco end = profSessao.getEnderecoIdendereco();
-        profEdit.setEnderecoIdendereco(end);
+        Endereco end = profSessao.getEndereco();
+        profEdit.setEndereco(end);
         Turma turma = profSessao.getIdturma();
         profEdit.setIdturma(turma);
         profEdit.setDtype(profSessao.getDtype());

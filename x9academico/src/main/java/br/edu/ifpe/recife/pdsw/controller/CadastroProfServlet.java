@@ -16,10 +16,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-/**
- *
- * @author aldo_neto
- */
 public class CadastroProfServlet extends HttpServlet {
 
     /**
@@ -100,7 +96,7 @@ public class CadastroProfServlet extends HttpServlet {
                 profCadastrado.setCpf(cpf);
                 profCadastrado.setRg(rg);
                 profCadastrado.setEmail(email);
-                profCadastrado.setEnderecoIdendereco(inserirEndereco(end));
+                profCadastrado.setEndereco(inserirEndereco(end));
                 profCadastrado.setNomecompleto(nome);
                 profCadastrado.setTelefone(telefone);
 

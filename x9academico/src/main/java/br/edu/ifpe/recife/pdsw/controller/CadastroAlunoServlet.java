@@ -18,13 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author aldo_neto
- */
 public class CadastroAlunoServlet extends HttpServlet {
 
-         private final static EntityManagerFactory EMF = Persistence.createEntityManagerFactory("x9academicoPU");
+    private final static EntityManagerFactory EMF = Persistence.createEntityManagerFactory("x9academicoPU");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +36,6 @@ public class CadastroAlunoServlet extends HttpServlet {
 
     }
 
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -50,8 +45,6 @@ public class CadastroAlunoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -98,40 +91,45 @@ public class CadastroAlunoServlet extends HttpServlet {
         if (user != null) {
             // erros.add("Login já cadastrado");
         } else {
+            if (senha_resp.equals(confirma_senha_resp)) {
 
-            Aluno aluno = new Aluno();
-            Responsavel responsavel = new Responsavel();
-            Endereco end = new Endereco();
-            Relatorioparental relatorio = new Relatorioparental();
+                Aluno aluno = new Aluno();
+                Responsavel responsavel = new Responsavel();
+                Endereco end = new Endereco();
+                Relatorioparental relatorio = new Relatorioparental();
 
-            end.setCep(cep_resp);
-            end.setCidade(cidade_resp);
-            end.setNumeroend(numero_resp);
-            end.setRua(endereco_resp);
-            end.setUf(UF_resp);
+                end.setCep(cep_resp);
+                end.setCidade(cidade_resp);
+                end.setNumeroend(numero_resp);
+                end.setRua(endereco_resp);
+                end.setUf(UF_resp);
 
-            responsavel.setCpf(cpf_resp);
-            responsavel.setEmail(email_resp);
-            responsavel.setEnderecoIdendereco(inserirEnd(end));
-            responsavel.setNomecompleto(nome_resp);
-            responsavel.setTelefone(telefone_resp);
-            responsavel.setParentesco(parentesco);
+                responsavel.setCpf(cpf_resp);
+                responsavel.setEmail(email_resp);
+                responsavel.setEndereco(inserirEnd(end));
+                responsavel.setNomecompleto(nome_resp);
+                responsavel.setTelefone(telefone_resp);
+                responsavel.setParentesco(parentesco);
 
-            responsavel.setLogin(login_resp);
-            responsavel.setSenha(senha_resp);
-            responsavel.setTipousuarios(3);
-            responsavel.setDataNascimento(nascimento_resp);
-            responsavel.setRg(rg_resp);
+                responsavel.setLogin(login_resp);
+                responsavel.setSenha(senha_resp);
+                responsavel.setTipousuarios(3);
+                responsavel.setDataNascimento(nascimento_resp);
+                responsavel.setRg(rg_resp);
 
-            aluno.setMatricula(matricula);
-            aluno.setDeficiencia(deficiencia);
-            aluno.setNome(nome);
-            aluno.setDataNascimento(nascimento);
-            aluno.setTurmaIdturma(getSingleTurma(turma_aluno));
-            aluno.setResponsavelIdresponsavel(inserirResp(responsavel));
+                aluno.setMatricula(matricula);
+                aluno.setDeficiencia(deficiencia);
+                aluno.setNome(nome);
+                aluno.setDataNascimento(nascimento);
+                aluno.setTurmaIdturma(getSingleTurma(turma_aluno));
+                aluno.setResponsavelIdresponsavel(inserirResp(responsavel));
 
-            relatorio.setAlunoIdaluno(inserirAln(aluno));
-            inserirRel(relatorio);
+                relatorio.setAlunoIdaluno(inserirAln(aluno));
+                inserirRel(relatorio);
+            }
+            else{
+            // erros.add("Senha errada");
+            }
 
         }
         response.sendRedirect("Menu?acao=cadastrar_aluno");

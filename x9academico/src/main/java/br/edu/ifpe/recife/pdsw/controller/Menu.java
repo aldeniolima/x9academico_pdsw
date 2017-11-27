@@ -17,10 +17,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-/**
- *
- * @author pibicf16
- */
 public class Menu extends HttpServlet {
 
     /**
@@ -69,7 +65,6 @@ public class Menu extends HttpServlet {
 
                         rd = request.getRequestDispatcher("WEB-INF/view/cadastrar_turma.jsp");
                         rd.forward(request, response);
-
                         break;
                     case "alterar_turmas":
                         rd = request.getRequestDispatcher("AlterarTurmaServlet");
