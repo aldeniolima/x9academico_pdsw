@@ -20,7 +20,9 @@
     </head>
     <body class="fixed-nav sticky-footer" style="background-color: #e3f2fd;">
         <!-- NavBar-->
+
         <%@include file="navbar.jsp"%>
+
         <!-- NavBar-->
         <div class="content-wrapper">
             <div class="container-fluid">

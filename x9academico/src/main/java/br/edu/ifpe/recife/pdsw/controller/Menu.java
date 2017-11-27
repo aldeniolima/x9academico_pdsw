@@ -130,7 +130,7 @@ public class Menu extends HttpServlet {
                         rd.forward(request, response);
                         break;
                     case "listar_aluno":
-                    request.setAttribute("listaTurmas", listarTurma());
+                        request.setAttribute("listaTurmas", listarTurma());
                         rd = request.getRequestDispatcher("WEB-INF/view/listar_alunos.jsp");
                         rd.forward(request, response);
                         break;
@@ -143,8 +143,24 @@ public class Menu extends HttpServlet {
                 }
                 break;
             case 2:
+                switch (acao) {
+                    case "Home":
+                        rd = request.getRequestDispatcher("WEB-INF/view/menu_prof.jsp");
+                        rd.forward(request, response);
+                        break;
+                    case "listar_turmas":
+                        rd = request.getRequestDispatcher("WEB-INF/view/listar_turmas_prof.jsp");
+                        rd.forward(request, response);
+                        break;
+                
+                  case "listar_alunos":
+                        Professor prof = (Professor) usuario;
+                        request.setAttribute("listaAlunos", prof.getIdturma().getAlunoList());
+                        rd = request.getRequestDispatcher("WEB-INF/view/listar_alunos_prof.jsp");
+                        rd.forward(request, response);
+                        break;
+                }
 
-                break;
             case 3:
 
                 break;
@@ -256,6 +272,19 @@ public class Menu extends HttpServlet {
         try {
             Aluno aluno = (Aluno) query.getSingleResult();
             return aluno;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    public List<Aluno> listarAlunosProf(Turma turma){
+      EntityManager em = EMF.createEntityManager();
+
+        String jpa = "SELECT u FROM Aluno u Where u.turma_idturma = ?1";
+        Query query = em.createQuery(jpa);
+        query.setParameter(1, turma);
+        try {
+            List list = (List<Aluno>) query.getResultList();
+            return list;
         } catch (NoResultException e) {
             return null;
         }
