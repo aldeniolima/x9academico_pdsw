@@ -6,7 +6,11 @@
 package br.edu.ifpe.recife.pdsw.controller;
 
 import br.edu.ifpe.recife.pdsw.model.Aluno;
+import br.edu.ifpe.recife.pdsw.model.FormataData;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -23,8 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class EditarAlunoServlet extends HttpServlet {
 
-    
     private final static EntityManagerFactory EMF = Persistence.createEntityManagerFactory("x9academicoPU");
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,7 +41,7 @@ public class EditarAlunoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,33 +70,37 @@ public class EditarAlunoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        
+
         RequestDispatcher rd = null;
-        
+
         Aluno aluno = (Aluno) request.getSession(false).getAttribute("aluno_editado");
-        
+
         Aluno alunoEditado = new Aluno();
-        
-      
+
         String nome = request.getParameter("nome");
         String nascimento = request.getParameter("data_nascimento");
-    
+
         String deficiencia = request.getParameter("deficiencia_aluno");
-        
-       
-        alunoEditado.setIdaluno(aluno.getIdaluno());
+
+        alunoEditado.setIdAluno(aluno.getIdAluno());
         alunoEditado.setNome(nome);
-        alunoEditado.setDataNascimento(nascimento);
+        FormataData formataData = new FormataData();
+
+        /* Datas formatadas */
+        Date data_aln_formatada = formataData.formata(nascimento);
+        /* FIM */
+
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(data_aln_formatada);
+        alunoEditado.setDataNascimento(calendar.getTime());
         alunoEditado.setDeficiencia(deficiencia);
         alunoEditado.setMatricula(aluno.getMatricula());
-        alunoEditado.setTurmaIdturma(aluno.getTurmaIdturma());
-        
-        
+        alunoEditado.setTurma(aluno.getTurma());
+
         atualizar(alunoEditado);
-        
+
         response.sendRedirect("Menu?acao=alterar_aluno");
-        
+
     }
 
     @Override
@@ -100,11 +108,9 @@ public class EditarAlunoServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-     public void atualizar(Aluno entity) {
-         
-      
-       EntityManager em = null;
+    public void atualizar(Aluno entity) {
+
+        EntityManager em = null;
         EntityTransaction et = null;
 
         try {

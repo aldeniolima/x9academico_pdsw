@@ -82,7 +82,7 @@ public class ExcluirAlunoServlet extends HttpServlet {
     public Aluno buscarAluno(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Aluno u Where u.idaluno = ?1";
+        String jpa = "SELECT u FROM Aluno u Where u.idAluno = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
 

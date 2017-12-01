@@ -64,10 +64,9 @@
                                         <th>Login</th>
                                         <th>Data de Nascimento</th>
                                         <th>CPF</th>
-                                        <th>RG</th>
                                         <th>Telefone</th>
                                         <th>Email</th>
-                                        <th>Turma</th>
+                                        <th>Turmas</th>
 
                                     </tr>
                                 </thead>
@@ -76,14 +75,17 @@
 
                                     <c:forEach var="professor" items="${listaProf}">
                                         <tr>
-                                            <td>${professor.nomecompleto}</td>
+                                            <td>${professor.nome}</td>
                                             <td>${professor.login}</td>
                                             <td>${professor.dataNascimento}</td>
                                             <td>${professor.cpf}</td>
-                                            <td>${professor.rg}</td>
                                             <td>${professor.telefone}</td>
                                             <td>${professor.email}</td>
-                                            <td>${professor.idturma.serie}</td>
+                                            <td>
+                                                <c:forEach var="turma" items="${professor.turmas}">
+                                                    ${turma.serie} 
+                                                </c:forEach>
+                                            </td>
                                         </tr>
 
                                     </c:forEach>

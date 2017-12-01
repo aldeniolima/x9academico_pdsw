@@ -65,15 +65,19 @@
                                         <th>Série</th>
                                         <th>Sala</th>
                                         <th>Quantidade máxima de alunos</th>
+                                        <th>Turno</th>
+                                        <th>Professor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="turma" items="${listaTurma}">
                                         <tr>
-                                            <td>${turma.idturma}</td>
+                                            <td>${turma.idTurma}</td>
                                             <td>${turma.serie}</td>
-                                            <td>${turma.numerosala}</td>
+                                            <td>${turma.numeroSala}</td>
                                             <td>${turma.qtdAluno}</td>
+                                            <td>${turma.turno}</td>
+                                            <td>${turma.professor.nome}</td>
                                         </tr>
                                     </c:forEach>
 

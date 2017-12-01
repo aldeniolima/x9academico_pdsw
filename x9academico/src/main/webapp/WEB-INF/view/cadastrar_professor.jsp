@@ -92,13 +92,7 @@
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
                                             <label for="cpf">CPF:</label>
-                                            <input type="" class="form-control" name="cpf" minlength="11" maxlength="11" id="cpf_professor" value="" placeholder="Digite o CPF" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="rg">RG:</label>
-                                            <input type="text" class="form-control" name="rg" minlength="7" maxlength="7" id="rg_professor" value="" placeholder="Digite o RG" required>
+                                            <input type="" class="form-control" name="cpf" minlength="14" maxlength="14" id="cpf_professor" value="" placeholder="Digite o CPF" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -107,17 +101,7 @@
                                             <input type="text" class="form-control" name="login" id="login_professor" value="" placeholder="Digite o Login" required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="select_turma">Turma:</label>
-                                            <select class="form-control" name="id_turma">
-                                                <option value=""disabled select hidden>Selecionar turma</option>
-                                                <c:forEach var="Turma" items="${listaTurmas}">
-                                                    <option value="${Turma.idturma}">${Turma.serie} Série</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -167,7 +151,7 @@
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
                                             <label for="cep">CEP:</label>
-                                            <input type="text" class="form-control" minlength="8" maxlength="8" name="cep" id="cep_professor" value="" placeholder="Digite o cep" required>
+                                            <input type="text" class="form-control" minlength="10" maxlength="10" name="cep" id="cep_professor" value="" placeholder="Digite o cep" required>
                                         </div>
                                     </div>
 

@@ -70,7 +70,7 @@
                                 <select class="form-control" name="id_turma">
                                     <option></option>
                                     <c:forEach var="Turma" items="${listaTurmas}">
-                                        <option value="${Turma.idturma}">${Turma.serie}</option>
+                                        <option value="${Turma.idTurma}">${Turma.serie}</option>
                                     </c:forEach>
                                 </select>
                             </div> 

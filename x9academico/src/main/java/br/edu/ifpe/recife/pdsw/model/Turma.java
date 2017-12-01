@@ -1,79 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.edu.ifpe.recife.pdsw.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
-/**
- *
- * @author aldo_neto
- */
+
 @Entity
 @Table(name = "turma")
 public class Turma implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idturma")
-    private Integer idturma;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Column(name = "idTurma")
+    private Integer idTurma;
+
+    @NotBlank
+    @Size(max = 10)
     @Column(name = "serie")
     private String serie;
-    @Column(name = "numerosala")
-    private Integer numerosala;
-    @Basic(optional = false)
+
+    @Min(01)
+    @Max(30)
+    @NotNull
+    @Column(name = "numeroSala")
+    private int numeroSala;
+
+    @NotBlank
+    @Size(max = 10)
+    @Column(name = "turno")
+    private String turno;
+    
+    @Min(10)
+    @Max(30)
     @NotNull
     @Column(name = "qtdAluno")
     private int qtdAluno;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "turmaIdturma")
-    private List<Aluno> alunoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idturma")
-    private List<Professor> professorList;
 
-    public Turma() {
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "idProfessor", referencedColumnName = "idProfessor")
+    private Professor professor;
+
+    @OneToMany(mappedBy = "turma", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Aluno> alunos;
+
+    public String getSerie() {
+        return serie;
     }
 
-    public Turma(Integer idturma) {
-        this.idturma = idturma;
-    }
-
-    public Turma(Integer idturma, String nomecompleto, int qtdAluno) {
-        this.idturma = idturma;
+    public void setSerie(String serie) {
         this.serie = serie;
-        this.qtdAluno = qtdAluno;
     }
 
-    public Integer getIdturma() {
-        return idturma;
+    public int getNumeroSala() {
+        return numeroSala;
     }
 
-    public void setIdturma(Integer idturma) {
-        this.idturma = idturma;
+    public void setNumeroSala(int numeroSala) {
+        this.numeroSala = numeroSala;
     }
 
-   
-
-    public Integer getNumerosala() {
-        return numerosala;
+    public String getTurno() {
+        return turno;
     }
 
-    public void setNumerosala(Integer numerosala) {
-        this.numerosala = numerosala;
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
 
     public int getQtdAluno() {
@@ -84,59 +98,28 @@ public class Turma implements Serializable {
         this.qtdAluno = qtdAluno;
     }
 
-    public List<Aluno> getAlunoList() {
-        return alunoList;
+    public Professor getProfessor() {
+        return professor;
     }
 
-    public void setAlunoList(List<Aluno> alunoList) {
-        this.alunoList = alunoList;
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
-    public List<Professor> getProfessorList() {
-        return professorList;
+    public List<Aluno> getAlunos() {
+        return alunos;
     }
 
-    public void setProfessorList(List<Professor> professorList) {
-        this.professorList = professorList;
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idturma != null ? idturma.hashCode() : 0);
-        return hash;
+    public Integer getIdTurma() {
+        return idTurma;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Turma)) {
-            return false;
-        }
-        Turma other = (Turma) object;
-        if ((this.idturma == null && other.idturma != null) || (this.idturma != null && !this.idturma.equals(other.idturma))) {
-            return false;
-        }
-        return true;
+    public void setIdTurma(Integer idTurma) {
+        this.idTurma = idTurma;
     }
 
-    @Override
-    public String toString() {
-        return "br.edu.ifpe.recife.pdsw.model.Turma[ idturma=" + idturma + " ]";
-    }
-
-    /**
-     * @return the serie
-     */
-    public String getSerie() {
-        return serie;
-    }
-
-    /**
-     * @param serie the serie to set
-     */
-    public void setSerie(String serie) {
-        this.serie = serie;
-    }
-    
 }

@@ -3,16 +3,16 @@
   <persistence-unit name="x9academicoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifpe.recife.pdsw.model.Administrador</class>
-    <class>br.edu.ifpe.recife.pdsw.model.Aluno</class>
     <class>br.edu.ifpe.recife.pdsw.model.Endereco</class>
     <class>br.edu.ifpe.recife.pdsw.model.Professor</class>
+    <class>br.edu.ifpe.recife.pdsw.model.Turma</class>
+    <class>br.edu.ifpe.recife.pdsw.model.Aluno</class>
+    <class>br.edu.ifpe.recife.pdsw.model.Usuario</class>
     <class>br.edu.ifpe.recife.pdsw.model.Relatorioparental</class>
     <class>br.edu.ifpe.recife.pdsw.model.Responsavel</class>
-    <class>br.edu.ifpe.recife.pdsw.model.Turma</class>
-    <class>br.edu.ifpe.recife.pdsw.model.Usuario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/x9academico"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/x9academico?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="root"/>

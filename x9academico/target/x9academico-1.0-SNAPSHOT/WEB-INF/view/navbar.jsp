@@ -68,7 +68,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" style="cursor: auto;">Bem-vindo, ${usuarioLogado.nomecompleto}!</a>
+                <a class="nav-link" style="cursor: auto;">Bem-vindo, ${usuarioLogado.nome}!</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="LogoutServlet">Sair</a>

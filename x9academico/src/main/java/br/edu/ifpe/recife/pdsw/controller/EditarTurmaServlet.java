@@ -1,5 +1,6 @@
 package br.edu.ifpe.recife.pdsw.controller;
 
+import br.edu.ifpe.recife.pdsw.model.Professor;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import br.edu.ifpe.recife.pdsw.model.Turma;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -33,18 +36,22 @@ public class EditarTurmaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd = null;
-        String serie = request.getParameter("serie");
+        String turno = request.getParameter("turno");
         Integer sala = Integer.parseInt(request.getParameter("sala"));
         Integer qtdAluno = Integer.parseInt(request.getParameter("quantidade_alunos"));
+        Integer idProf = Integer.parseInt(request.getParameter("id_prof"));
 
         Turma turmaEdita = new Turma();
 
         
-        turmaEdita.setNumerosala(sala);
+        turmaEdita.setNumeroSala(sala);
         Turma turmaSessao = (Turma) request.getSession().getAttribute("turma_editada");
         turmaEdita.setQtdAluno(qtdAluno);
-        turmaEdita.setIdturma(turmaSessao.getIdturma());
+        turmaEdita.setIdTurma(turmaSessao.getIdTurma());
         turmaEdita.setSerie(turmaSessao.getSerie());
+        turmaEdita.setTurno(turno);
+        
+        turmaEdita.setProfessor(RecuperaProfId(idProf));
 
         //Turma turmaVerifica = atualizar(turmaEdita);
         atualizar(turmaEdita);
@@ -127,5 +134,19 @@ public class EditarTurmaServlet extends HttpServlet {
         }
 
         return entity;
+    }
+    
+        public Professor RecuperaProfId(int id) {
+        EntityManager em = EMF.createEntityManager();
+
+        String jpa = "SELECT u FROM Professor u Where u.idUsuario = ?1";
+        Query query = em.createQuery(jpa);
+        query.setParameter(1, id);
+        try {
+            Professor prof = (Professor) query.getSingleResult();
+            return prof;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

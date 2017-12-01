@@ -64,19 +64,23 @@
                                         <th>Série</th>
                                         <th>Quantidade de Alunos</th>
                                         <th>Sala</th>
+                                        <th>Turno</th>
+                                        <th>Professor</th>
                                         <th>Opções</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="turma" items="${listaTurma}">
                                         <tr>
-                                            <td>${turma.idturma}</td>
+                                            <td>${turma.idTurma}</td>
                                             <td>${turma.serie}</td>
                                             <td>${turma.qtdAluno}</td>
-                                            <td>${turma.numerosala}</td>
+                                            <td>${turma.numeroSala}</td>
+                                            <td>${turma.turno}</td>
+                                            <td>${turma.professor.nome}</td>
                                             <td>
-                                                <a href="Menu?acao=editar_turma&codigo=${turma.idturma}" role="button" ><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                                                <a href='#' onclick="confirmacao('${turma.idturma}')" role="button" name="excluir"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+                                                <a href="Menu?acao=editar_turma&codigo=${turma.idTurma}" role="button" ><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                                <a href='#' onclick="confirmacao('${turma.idTurma}')" role="button" name="excluir"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

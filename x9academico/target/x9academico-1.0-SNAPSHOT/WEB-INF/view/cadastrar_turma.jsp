@@ -50,13 +50,13 @@
                                     <ul  id="ul_erro">
                                         <c:forEach var="erro" items="${mensagens.erros}">
                                             <li> ${erro} </li>
-                                        </c:forEach>
+                                            </c:forEach>
                                     </ul>
                                 </div>
                             </c:if>
                         </div>
                         <form method="post" action="${pageContext.request.contextPath}/CadastroTurmaServlet">
-                       
+
                             <div class="form-group">
                                 <label for="serie">Série:</label>
                                 <input type="text" class="form-control" name="serie" id="serie_turma" value="" placeholder="Digite a série" required>
@@ -69,6 +69,29 @@
                             <div class="form-group">
                                 <label for=quantidade_alunos">Quantidade Máxima de Alunos:</label>
                                 <input type="text" maxlength="2" class="form-control" name="quantidade_alunos" id="quantidade_alunos_turma" value="" placeholder="Digite a quantidade máxima de alunos" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for=quantidade_alunos">Turno:</label>
+                                        <select class="form-control" name="turno">
+                                            <option value=""select hidden>Selecionar turno</option>
+                                            <option value="Manhã">Manhã</option>
+                                            <option value="Tarde">Tarde</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="select_prof">Professores:</label>
+                                        <select class="form-control" name="id_prof">
+                                            <option value=""select hidden>Selecionar Professor</option>
+                                            <c:forEach var="prof" items="${listaProf}">
+                                                <option value="${prof.idUsuario}">${prof.nome}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input href="CadastroTurmaServlet" type="submit" class="btn btn-default" name="btn_cadastro_turma" value="Cadastrar"/>

@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="turma">Turma:</label>
-                                  <input type="text" class="form-control" name="turma_aluno" id="turma_aluno" value="${aluno.turmaIdturma.serie}"  disabled>
+                                  <input type="text" class="form-control" name="turma_aluno" id="turma_aluno" value="${aluno.turma.serie}"  disabled>
                             </div> 
                             <div class="form-group">
                                 <label for="data_nascimento">Data de nascimento:</label>

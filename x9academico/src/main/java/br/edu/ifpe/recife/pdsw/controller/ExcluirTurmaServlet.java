@@ -93,7 +93,7 @@ public class ExcluirTurmaServlet extends HttpServlet {
     public Turma getSingleID(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Turma u Where u.idturma = ?1";
+        String jpa = "SELECT u FROM Turma u Where u.idTurma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
         try {

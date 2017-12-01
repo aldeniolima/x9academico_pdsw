@@ -106,7 +106,7 @@ public class ListarAlunoServlet extends HttpServlet {
     public Turma turmaId(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Turma u Where u.idturma = ?1";
+        String jpa = "SELECT u FROM Turma u Where u.idTurma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
         try {
@@ -120,7 +120,7 @@ public class ListarAlunoServlet extends HttpServlet {
     public List<Aluno> alunosTurma(Turma x) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Aluno u where u.turmaIdturma = ?1";
+        String jpa = "SELECT u FROM Aluno u where u.turma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, x);
 

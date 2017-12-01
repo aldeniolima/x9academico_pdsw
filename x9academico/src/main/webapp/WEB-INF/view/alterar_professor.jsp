@@ -64,27 +64,29 @@
                                         <th>Login</th>
                                         <th>Data de Nascimento</th>
                                         <th>CPF</th>
-                                        <th>RG</th>
                                         <th>Telefone</th>
                                         <th>Email</th>
-                                        <th>Turma</th>
+                                        <th>Turmas</th>
                                         <th>Opções</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="professor" items="${listaProf}">
                                         <tr>
-                                            <td>${professor.nomecompleto}</td>
+                                            <td>${professor.nome}</td>
                                             <td>${professor.login}</td>
                                             <td>${professor.dataNascimento}</td>
                                             <td>${professor.cpf}</td>
-                                            <td>${professor.rg}</td>
                                             <td>${professor.telefone}</td>
                                             <td>${professor.email}</td>
-                                            <td>${professor.idturma.serie}</td>
                                             <td>
-                                                <a href="Menu?acao=editar_prof&codigo=${professor.idusuario}" role="button" ><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                                                <a href="#" onclick="confirmacao('${professor.idusuario}')" role="button" name="excluir"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+                                                <c:forEach var="turma" items="${professor.turmas}">
+                                                    ${turma.serie} 
+                                                </c:forEach>
+                                            </td>
+                                            <td>
+                                                <a href="Menu?acao=editar_prof&codigo=${professor.idUsuario}" role="button" ><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                                <a href="#" onclick="confirmacao('${professor.idUsuario}')" role="button" name="excluir"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

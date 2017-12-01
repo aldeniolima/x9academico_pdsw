@@ -63,7 +63,7 @@
                                     <select class="form-control" name="id_turma">
                                         
                                         <c:forEach var="Turma" items="${listaTurmas}">
-                                            <option value="${Turma.idturma}">Série: ${Turma.serie}</option>
+                                            <option value="${Turma.idTurma}">Série: ${Turma.serie}</option>
                                         </c:forEach>
                                     </select>
                                     <input href="" type="submit" class="btn btn-default" name="btn_lista_aluno" value="Buscar"/>

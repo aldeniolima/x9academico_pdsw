@@ -6,9 +6,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.edu.ifpe.recife.pdsw.model.Endereco;
+import br.edu.ifpe.recife.pdsw.model.FormataData;
 import br.edu.ifpe.recife.pdsw.model.Professor;
 import br.edu.ifpe.recife.pdsw.model.Turma;
 import br.edu.ifpe.recife.pdsw.model.Usuario;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -63,14 +67,12 @@ public class CadastroProfServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        int id_turma = Integer.parseInt(request.getParameter("id_turma"));
         String nome = request.getParameter("nome");
         String nascimento = request.getParameter("data_nascimento");
         String endereco = request.getParameter("endereco");
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
         String cpf = request.getParameter("cpf");
-        String rg = request.getParameter("rg");
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         String confirma_senha = request.getParameter("confirma_senha");
@@ -89,22 +91,31 @@ public class CadastroProfServlet extends HttpServlet {
 
                 end.setCep(cep);
                 end.setCidade(cidade);
-                end.setNumeroend(numero);
+                end.setNumeroEndereco(numero);
                 end.setRua(endereco);
                 end.setUf(UF);
 
                 profCadastrado.setCpf(cpf);
-                profCadastrado.setRg(rg);
+               // profCadastrado.setRg(rg);
                 profCadastrado.setEmail(email);
                 profCadastrado.setEndereco(inserirEndereco(end));
-                profCadastrado.setNomecompleto(nome);
+                profCadastrado.setNome(nome);
                 profCadastrado.setTelefone(telefone);
 
                 profCadastrado.setLogin(login);
                 profCadastrado.setSenha(senha);
-                profCadastrado.setTipousuarios(2);
-                profCadastrado.setIdturma(getSingleIDTurma(id_turma));
-                profCadastrado.setDataNascimento(nascimento);
+                //profCadastrado.setTipousuarios(2);
+               // profCadastrado.setTurmas(getSingleIDTurma(id_turma));
+                
+                FormataData formataData = new FormataData();
+
+                /* Datas formatadas */
+                Date data_prof_formatada = formataData.formata(nascimento);
+                /* FIM */
+                
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(data_prof_formatada); 
+                profCadastrado.setDataNascimento(calendar.getTime());
 
                 inserirProf(profCadastrado);
             } else {
@@ -172,7 +183,7 @@ public class CadastroProfServlet extends HttpServlet {
     public Turma getSingleIDTurma(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Turma u Where u.idturma = ?1";
+        String jpa = "SELECT u FROM Turma u Where u.idTurma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
         try {

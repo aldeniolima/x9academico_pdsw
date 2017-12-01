@@ -1,86 +1,80 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.edu.ifpe.recife.pdsw.model;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
-/**
- *
- * @author aldo_neto
- */
 @Entity
 @Table(name = "aluno")
 public class Aluno implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idaluno")
-    private Integer idaluno;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Column(name = "idAluno")
+    private Long idAluno;
+
+    @Size(min = 8, max = 8)
+    @NotBlank
     @Column(name = "matricula")
     private String matricula;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+
+    @Size(max = 100)
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{br.edu.ifpe.recife.x9academicoDescorp.model.Aluno.nome}")
+    @NotBlank
     @Column(name = "nome")
     private String nome;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+
+    @Past
+    @Temporal(TemporalType.DATE)
     @Column(name = "data_nascimento")
-    private String dataNascimento;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 5)
+    private Date dataNascimento;
+
+    @Size(min = 3, max = 3)
+    @NotBlank
     @Column(name = "deficiencia")
     private String deficiencia;
-    @JoinColumn(name = "turma_idturma", referencedColumnName = "idturma")
-    @ManyToOne(optional = false)
-    private Turma turmaIdturma;
-    @JoinColumn(name = "responsavel_idresponsavel", referencedColumnName = "idresponsavel")
-    @ManyToOne
-    private Responsavel responsavelIdresponsavel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alunoIdaluno")
-    private List<Relatorioparental> relatorioparentalList;
 
-    public Aluno() {
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idRelatorioParental", referencedColumnName = "idRelatorioParental")
+    private RelatorioParental relatorioParental;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
+    @JoinColumn(name = "idTurma", referencedColumnName = "idTurma")
+    private Turma turma;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
+    @JoinColumn(name = "idResponsavel", referencedColumnName = "idResponsavel")
+    private Responsavel responsavel;
+
+    public Long getIdAluno() {
+        return idAluno;
     }
 
-    public Aluno(Integer idaluno) {
-        this.idaluno = idaluno;
-    }
-
-    public Aluno(Integer idaluno, String matricula, String nome, String dataNascimento, String deficiencia) {
-        this.idaluno = idaluno;
-        this.matricula = matricula;
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.deficiencia = deficiencia;
-    }
-
-    public Integer getIdaluno() {
-        return idaluno;
-    }
-
-    public void setIdaluno(Integer idaluno) {
-        this.idaluno = idaluno;
+    public void setIdAluno(Long idAluno) {
+        this.idAluno = idAluno;
     }
 
     public String getMatricula() {
@@ -100,10 +94,17 @@ public class Aluno implements Serializable {
     }
 
     public String getDataNascimento() {
-        return dataNascimento;
+        SimpleDateFormat formatarImpressao = new SimpleDateFormat("yyyy-MM-dd");
+        String dataString;
+        if (dataNascimento != null) {
+            dataString = formatarImpressao.format(dataNascimento);
+        } else {
+            dataString = null;
+        }
+        return dataString;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -115,53 +116,28 @@ public class Aluno implements Serializable {
         this.deficiencia = deficiencia;
     }
 
-    public Turma getTurmaIdturma() {
-        return turmaIdturma;
+    public RelatorioParental getRelatorioParental() {
+        return relatorioParental;
     }
 
-    public void setTurmaIdturma(Turma turmaIdturma) {
-        this.turmaIdturma = turmaIdturma;
+    public void setRelatorioParental(RelatorioParental relatorioParental) {
+        this.relatorioParental = relatorioParental;
     }
 
-    public Responsavel getResponsavelIdresponsavel() {
-        return responsavelIdresponsavel;
+    public Responsavel getResponsavel() {
+        return responsavel;
     }
 
-    public void setResponsavelIdresponsavel(Responsavel responsavelIdresponsavel) {
-        this.responsavelIdresponsavel = responsavelIdresponsavel;
+    public void setResponsavel(Responsavel responsavel) {
+        this.responsavel = responsavel;
     }
 
-    public List<Relatorioparental> getRelatorioparentalList() {
-        return relatorioparentalList;
+    public Turma getTurma() {
+        return turma;
     }
 
-    public void setRelatorioparentalList(List<Relatorioparental> relatorioparentalList) {
-        this.relatorioparentalList = relatorioparentalList;
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idaluno != null ? idaluno.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Aluno)) {
-            return false;
-        }
-        Aluno other = (Aluno) object;
-        if ((this.idaluno == null && other.idaluno != null) || (this.idaluno != null && !this.idaluno.equals(other.idaluno))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.edu.ifpe.recife.pdsw.model.Aluno[ idaluno=" + idaluno + " ]";
-    }
-    
 }

@@ -57,29 +57,46 @@
                                 </div>
                             </c:if>
                         </div>
-                            <form method="get" action="${pageContext.request.contextPath}/EditarTurmaServlet">
+                        <form method="get" action="${pageContext.request.contextPath}/EditarTurmaServlet">
+                            <div class="form-group">
+                                <label for="codigo">Código:</label>
+                                <input type="text" class="form-control" name="codigo" id="codigo_turma" value="${turmaEditar.idTurma}" disabled>
+                            </div>         
+                            <div class="form-group">
+                                <label for="serie">Série:</label>
+                                <input type="text" class="form-control" name="serie" id="serie_turma" value="${turmaEditar.serie}" placeholder="Digite a série" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="sala">Sala:</label>
+                                <input type="text" maxlength="2" class="form-control" name="sala" id="sala_turma" value="${turmaEditar.numeroSala}" placeholder="Digite a sala" required>
+                            </div>                     
+                            <div class="form-group">
+                                <label for=quantidade_alunos">Quantidade Máxima de Alunos:</label>
+                                <input type="text" maxlength="2" class="form-control" name="quantidade_alunos" id="quantidade_alunos_turma" value="${turmaEditar.qtdAluno}" placeholder="Digite a quantidade máxima de alunos" required>
+                            </div>
+                            <div class="form-group">
+                                <label for=quantidade_alunos">Turno:</label>
+                                <select class="form-control" name="turno">
+                                    <option value="${turmaEditar.turno}">${turmaEditar.turno}</option>
+                                    <option value="Manhã">Manhã</option>
+                                    <option value="Tarde">Tarde</option>
+                                </select>
+                            </div>
                                 <div class="form-group">
-                                    <label for="codigo">Código:</label>
-                                    <input type="text" class="form-control" name="codigo" id="codigo_turma" value="${turmaEditar.idturma}" disabled>
-                                </div>         
-                                <div class="form-group">
-                                    <label for="serie">Série:</label>
-                                    <input type="text" class="form-control" name="serie" id="serie_turma" value="${turmaEditar.serie}" placeholder="Digite a série" disabled>
+                                    <label for="select_prof">Professores:</label>
+                                    <select class="form-control" name="id_prof">
+                                        <option value="${turmaEditar.professor.idUsuario}">${turmaEditar.professor.nome}</option>
+                                        <c:forEach var="prof" items="${listaprof}">
+                                            <option value="${prof.idUsuario}">${prof.nome}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="sala">Sala:</label>
-                                    <input type="text" maxlength="2" class="form-control" name="sala" id="sala_turma" value="${turmaEditar.numerosala}" placeholder="Digite a sala" required>
-                                </div>                     
-                                <div class="form-group">
-                                    <label for=quantidade_alunos">Quantidade Máxima de Alunos:</label>
-                                    <input type="text" maxlength="2" class="form-control" name="quantidade_alunos" id="quantidade_alunos_turma" value="${turmaEditar.qtdAluno}" placeholder="Digite a quantidade máxima de alunos" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-default" name="btn_cadastro_turma" value="Atualizar"/>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-default" name="btn_cadastro_turma" value="Atualizar"/>
 
-                                    <!-- btn btn-success btn-block -->
-                                </div>
-                            </form>
+                                <!-- btn btn-success btn-block -->
+                            </div>
+                        </form>
                     </div>
 
                 </div>

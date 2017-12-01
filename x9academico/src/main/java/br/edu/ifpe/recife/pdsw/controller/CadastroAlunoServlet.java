@@ -2,11 +2,16 @@ package br.edu.ifpe.recife.pdsw.controller;
 
 import br.edu.ifpe.recife.pdsw.model.Aluno;
 import br.edu.ifpe.recife.pdsw.model.Endereco;
-import br.edu.ifpe.recife.pdsw.model.Relatorioparental;
+import br.edu.ifpe.recife.pdsw.model.FormataData;
+import br.edu.ifpe.recife.pdsw.model.RelatorioParental;
 import br.edu.ifpe.recife.pdsw.model.Responsavel;
 import br.edu.ifpe.recife.pdsw.model.Turma;
 import br.edu.ifpe.recife.pdsw.model.Usuario;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -96,39 +101,50 @@ public class CadastroAlunoServlet extends HttpServlet {
                 Aluno aluno = new Aluno();
                 Responsavel responsavel = new Responsavel();
                 Endereco end = new Endereco();
-                Relatorioparental relatorio = new Relatorioparental();
+                RelatorioParental relatorio = new RelatorioParental();
 
                 end.setCep(cep_resp);
                 end.setCidade(cidade_resp);
-                end.setNumeroend(numero_resp);
+                end.setNumeroEndereco(numero_resp);
                 end.setRua(endereco_resp);
                 end.setUf(UF_resp);
 
                 responsavel.setCpf(cpf_resp);
                 responsavel.setEmail(email_resp);
                 responsavel.setEndereco(inserirEnd(end));
-                responsavel.setNomecompleto(nome_resp);
+                responsavel.setNome(nome_resp);
                 responsavel.setTelefone(telefone_resp);
-                responsavel.setParentesco(parentesco);
+                // responsavel.set(parentesco);
 
                 responsavel.setLogin(login_resp);
                 responsavel.setSenha(senha_resp);
-                responsavel.setTipousuarios(3);
-                responsavel.setDataNascimento(nascimento_resp);
-                responsavel.setRg(rg_resp);
+                //responsavel.setTi(3);
+
+                FormataData formataData = new FormataData();
+
+                /* Datas formatadas */
+                Date data_resp_formatada = formataData.formata(nascimento_resp);
+                Date data_aln_formatada = formataData.formata(nascimento);
+
+                /* FIM */
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(data_resp_formatada);
+                responsavel.setDataNascimento(calendar.getTime());
+
+                //responsavel.set(rg_resp);
 
                 aluno.setMatricula(matricula);
                 aluno.setDeficiencia(deficiencia);
                 aluno.setNome(nome);
-                aluno.setDataNascimento(nascimento);
-                aluno.setTurmaIdturma(getSingleTurma(turma_aluno));
-                aluno.setResponsavelIdresponsavel(inserirResp(responsavel));
+                calendar.setTime(data_aln_formatada);
+                aluno.setDataNascimento(calendar.getTime());
+                aluno.setTurma(getSingleTurma(turma_aluno));
+                aluno.setResponsavel(inserirResp(responsavel));
+                aluno.setRelatorioParental(inserirRel(relatorio));
+                inserirAln(aluno);
 
-                relatorio.setAlunoIdaluno(inserirAln(aluno));
-                inserirRel(relatorio);
-            }
-            else{
-            // erros.add("Senha errada");
+            } else {
+                // erros.add("Senha errada");
             }
 
         }
@@ -163,7 +179,7 @@ public class CadastroAlunoServlet extends HttpServlet {
     public Turma getSingleTurma(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Turma u Where u.idturma = ?1";
+        String jpa = "SELECT u FROM Turma u Where u.idTurma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
         try {
@@ -247,7 +263,7 @@ public class CadastroAlunoServlet extends HttpServlet {
 
     }
 
-    public Relatorioparental inserirRel(Relatorioparental entity) {
+    public RelatorioParental inserirRel(RelatorioParental entity) {
         EntityManager em = null;
         EntityTransaction et = null;
 

@@ -7,8 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.edu.ifpe.recife.pdsw.model.Endereco;
+import br.edu.ifpe.recife.pdsw.model.FormataData;
 import br.edu.ifpe.recife.pdsw.model.Professor;
 import br.edu.ifpe.recife.pdsw.model.Turma;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -34,25 +38,33 @@ public class EditarProf extends HttpServlet {
         String nome = request.getParameter("nome");
         String data_nasc = request.getParameter("data_nascimento");
         String email = request.getParameter("email");
-        String rg = request.getParameter("rg");
         String telefone = request.getParameter("telefone");
 
         Professor profSessao = (Professor) request.getSession().getAttribute("professor_editado");
         profEdit.setCpf(profSessao.getCpf());
-        profEdit.setDataNascimento(data_nasc);
+
+        FormataData formataData = new FormataData();
+
+        /* Datas formatadas */
+        Date data_prof_formatada = formataData.formata(data_nasc);
+        /* FIM */
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(data_prof_formatada);
+        profEdit.setDataNascimento(calendar.getTime());
         profEdit.setEmail(email);
-        profEdit.setRg(rg);
-        profEdit.setNomecompleto(nome);
+        //profEdit.setRg(rg);
+        profEdit.setNome(nome);
         profEdit.setTelefone(telefone);
         profEdit.setLogin(profSessao.getLogin());
-        profEdit.setIdusuario(profSessao.getIdusuario());
+        profEdit.setIdUsuario(profSessao.getIdUsuario());
+        profEdit.setDtype(profSessao.getDtype());
+        profEdit.setTurmas(profSessao.getTurmas());
         Endereco end = profSessao.getEndereco();
         profEdit.setEndereco(end);
-        Turma turma = profSessao.getIdturma();
-        profEdit.setIdturma(turma);
-        profEdit.setDtype(profSessao.getDtype());
+       // Turma turma = profSessao.getTurmas();
+       // profEdit.setTurmas(turma);
         profEdit.setSenha(profSessao.getSenha());
-        profEdit.setTipousuarios(profSessao.getTipousuarios());
+        // profEdit.setTipousuarios(profSessao.getTipousuarios());
 
         atualizar(profEdit);
 

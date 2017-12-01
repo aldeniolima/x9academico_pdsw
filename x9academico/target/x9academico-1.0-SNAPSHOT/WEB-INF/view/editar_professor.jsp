@@ -60,7 +60,7 @@
                         <form method="post" action="${pageContext.request.contextPath}/EditarProf">                  
                             <div class="form-group">
                                 <label for="nome">Nome:</label>
-                                <input type="text" class="form-control" name="nome" id="nome_professor" value="${profEditar.nomecompleto}" placeholder="Digite o nome" required>
+                                <input type="text" class="form-control" name="nome" id="nome_professor" value="${profEditar.nome}" placeholder="Digite o nome" required>
                             </div>
                             <div class="form-group">
                                 <label for="data_nascimento">Data de nascimento:</label>
@@ -77,10 +77,6 @@
                             <div class="form-group">
                                 <label for="cpf">CPF:</label>
                                 <input type="text" class="form-control" minlength="11" maxlength="11" name="cpf" id="cpf_professor" value="${profEditar.cpf}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="rg">RG:</label>
-                                <input type="text" class="form-control" minlength="8" maxlength="8" name="rg" id="rg_professor" value="${profEditar.rg}" placeholder="Digite o RG" required>
                             </div>
                             <div class="form-group">
                                 <label for="login">Login:</label>

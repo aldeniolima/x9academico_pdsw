@@ -84,7 +84,7 @@ public class ExcluirProfServlet extends HttpServlet {
     public Professor getSingle(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Professor u Where u.idusuario = ?1";
+        String jpa = "SELECT u FROM Professor u Where u.idUsuario = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
 

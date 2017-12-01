@@ -63,7 +63,7 @@
                                     <select class="form-control" name="id_turma">
                                         
                                         <c:forEach var="Turma" items="${listaTurmas}">
-                                            <option value="${Turma.idturma}">Série: ${Turma.serie}</option>
+                                            <option value="${Turma.idTurma}">Série: ${Turma.serie}</option>
                                         </c:forEach>
                                     </select>
                                     <input href="" type="submit" class="btn btn-default" name="btn_lista_aluno" value="Buscar"/>
@@ -87,8 +87,8 @@
                                             <td>${aluno.dataNascimento}</td>
                                             <td>${aluno.deficiencia}</td>
                                             <td>
-                                                <a href="Menu?acao=editar_aluno&aln=${aluno.idaluno}" role="button"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                                                <a href="#" role="button" onclick="confirmacao('${aluno.idaluno}')"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+                                                <a href="Menu?acao=editar_aluno&aln=${aluno.idAluno}" role="button"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                                <a href="#" role="button" onclick="confirmacao('${aluno.idAluno}')"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

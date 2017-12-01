@@ -54,15 +54,15 @@ public class Menu extends HttpServlet {
         String acao = request.getParameter("acao");
 
         RequestDispatcher rd = null;
-        switch (usuario.getTipousuarios()) {
-            case 1:
+        switch (usuario.getDtype()) {
+            case "A":
                 switch (acao) {
                     case "Home":
                         rd = request.getRequestDispatcher("WEB-INF/view/menu.jsp");
                         rd.forward(request, response);
                         break;
                     case "cadastrar_turma":
-
+                        request.setAttribute("listaProf", listarProf());
                         rd = request.getRequestDispatcher("WEB-INF/view/cadastrar_turma.jsp");
                         rd.forward(request, response);
                         break;
@@ -76,6 +76,7 @@ public class Menu extends HttpServlet {
                         if (editaTurma != null) {
                             request.getSession().setAttribute("turma_editada", editaTurma);
                             request.setAttribute("turmaEditar", editaTurma);
+                            request.setAttribute("listaprof", listarProf());
                             rd = request.getRequestDispatcher("WEB-INF/view/editar_turma.jsp");
 
                         } else {
@@ -142,7 +143,7 @@ public class Menu extends HttpServlet {
                         break;
                 }
                 break;
-            case 2:
+            case "P":
                 switch (acao) {
                     case "Home":
                         rd = request.getRequestDispatcher("WEB-INF/view/menu_prof.jsp");
@@ -155,13 +156,13 @@ public class Menu extends HttpServlet {
                 
                   case "listar_alunos":
                         Professor prof = (Professor) usuario;
-                        request.setAttribute("listaAlunos", prof.getIdturma().getAlunoList());
+                        request.setAttribute("listaAlunos", prof.getTurmas());
                         rd = request.getRequestDispatcher("WEB-INF/view/listar_alunos_prof.jsp");
                         rd.forward(request, response);
                         break;
                 }
 
-            case 3:
+            case "R":
 
                 break;
         }
@@ -195,7 +196,7 @@ public class Menu extends HttpServlet {
     public List<Turma> getSingleList(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Turma u Where u.idturma = ?1";
+        String jpa = "SELECT u FROM Turma u Where u.idTurma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
         try {
@@ -209,7 +210,7 @@ public class Menu extends HttpServlet {
     public Turma getSingleID(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Turma u Where u.idturma = ?1";
+        String jpa = "SELECT u FROM Turma u Where u.idTurma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
         try {
@@ -250,7 +251,7 @@ public class Menu extends HttpServlet {
     public Professor buscarProf(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Professor u Where u.idusuario = ?1";
+        String jpa = "SELECT u FROM Professor u Where u.idUsuario = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
 
@@ -265,7 +266,7 @@ public class Menu extends HttpServlet {
     public Aluno buscarAln(int id) {
         EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Aluno u where u.idaluno = ?1";
+        String jpa = "SELECT u FROM Aluno u where u.idAluno = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, id);
 
@@ -279,7 +280,7 @@ public class Menu extends HttpServlet {
     public List<Aluno> listarAlunosProf(Turma turma){
       EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Aluno u Where u.turma_idturma = ?1";
+        String jpa = "SELECT u FROM Aluno u Where u.idTurma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, turma);
         try {
