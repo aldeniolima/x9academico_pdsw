@@ -1,22 +1,17 @@
 package br.edu.ifpe.recife.pdsw.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author aldo_neto
- */
+
 @Entity
 @Table(name = "relatorioparental")
 public class Relatorioparental implements Serializable {
@@ -24,64 +19,75 @@ public class Relatorioparental implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idrelatorioparental")
-    private Integer idrelatorioparental;
-    @Basic(optional = true)
-    @Size(min = 1, max = 255)
+    @Column(name = "idRelatorioParental")
+    private Long idRelatorioParental;
+
+    @DecimalMin("0.0")
+    @DecimalMax("10.0")
+    @Column(name = "lideranca")
+    private double lideranca;
+
+    @DecimalMin("0.0")
+    @DecimalMax("10.0")
+    @Column(name = "trabalhoEmEquipe")
+    private double trabalhoEmEquipe;
+
+    @DecimalMin("0.0")
+    @DecimalMax("10.0")
+    @Column(name = "participacaoEmSala")
+    private double participacaoEmSala;
+
+    @DecimalMin("0.0")
+    @DecimalMax("10.0")
+    @Column(name = "motivacao")
+    private double motivacao;
+
+    @DecimalMin("0.0")
+    @DecimalMax("10.0")
+    @Column(name = "criatividade")
+    private double criatividade;
+
+    @Size(max = 150)
     @Column(name = "observacoes")
     private String observacoes;
-    @Basic(optional = true)
-    @Column(name = "comportamento")
-    private float comportamento;
-    @Basic(optional = true)
-    @Column(name = "participacao_em_sala")
-    private float participacaoEmSala;
-    @Basic(optional = true)
-    @Column(name = "facilidade_com_disciplina")
-    private float facilidadeComDisciplina;
-    @Basic(optional = false)
-    @Column(name = "trabalho_em_equipe")
-    private float trabalhoEmEquipe;
-    @Basic(optional = false)
-    @Column(name = "lideranca")
-    private float lideranca;
-    @Basic(optional = false)
-    @Column(name = "motivacao")
-    private float motivacao;
-    @Basic(optional = false)
-    @Column(name = "criatividade")
-    private float criatividade;
-    @JoinColumn(name = "aluno_idaluno", referencedColumnName = "idaluno")
-    @ManyToOne(optional = false)
-    private Aluno alunoIdaluno;
 
     public Relatorioparental() {
     }
 
-    public Relatorioparental(Integer idrelatorioparental) {
-        this.idrelatorioparental = idrelatorioparental;
+    public Relatorioparental(Long idRelatorioParental) {
+        this.idRelatorioParental = idRelatorioParental;
     }
 
-    public Relatorioparental(Integer idrelatorioparental, String observacoes, float comportamento, float participacaoEmSala, float facilidadeComDisciplina, float trabalhoEmEquipe, float lideranca, float motivacao, float criatividade) {
-        this.idrelatorioparental = idrelatorioparental;
-        this.observacoes = observacoes;
-        this.comportamento = comportamento;
-        this.participacaoEmSala = participacaoEmSala;
-        this.facilidadeComDisciplina = facilidadeComDisciplina;
-        this.trabalhoEmEquipe = trabalhoEmEquipe;
-        this.lideranca = lideranca;
-        this.motivacao = motivacao;
+    public Long getIdRelatorioParental() {
+        return idRelatorioParental;
+    }
+
+    public void setIdRelatorioParental(Long idRelatorioParental) {
+        this.idRelatorioParental = idRelatorioParental;
+    }
+
+    public Double getCriatividade() {
+        return criatividade;
+    }
+
+    public void setCriatividade(Double criatividade) {
         this.criatividade = criatividade;
     }
 
-    public Integer getIdrelatorioparental() {
-        return idrelatorioparental;
+    public Double getLideranca() {
+        return lideranca;
     }
 
-    public void setIdrelatorioparental(Integer idrelatorioparental) {
-        this.idrelatorioparental = idrelatorioparental;
+    public void setLideranca(Double lideranca) {
+        this.lideranca = lideranca;
+    }
+
+    public Double getMotivacao() {
+        return motivacao;
+    }
+
+    public void setMotivacao(Double motivacao) {
+        this.motivacao = motivacao;
     }
 
     public String getObservacoes() {
@@ -92,74 +98,26 @@ public class Relatorioparental implements Serializable {
         this.observacoes = observacoes;
     }
 
-    public float getComportamento() {
-        return comportamento;
-    }
-
-    public void setComportamento(float comportamento) {
-        this.comportamento = comportamento;
-    }
-
-    public float getParticipacaoEmSala() {
+    public Double getParticipacaoEmSala() {
         return participacaoEmSala;
     }
 
-    public void setParticipacaoEmSala(float participacaoEmSala) {
+    public void setParticipacaoEmSala(Double participacaoEmSala) {
         this.participacaoEmSala = participacaoEmSala;
     }
 
-    public float getFacilidadeComDisciplina() {
-        return facilidadeComDisciplina;
-    }
-
-    public void setFacilidadeComDisciplina(float facilidadeComDisciplina) {
-        this.facilidadeComDisciplina = facilidadeComDisciplina;
-    }
-
-    public float getTrabalhoEmEquipe() {
+    public Double getTrabalhoEmEquipe() {
         return trabalhoEmEquipe;
     }
 
-    public void setTrabalhoEmEquipe(float trabalhoEmEquipe) {
+    public void setTrabalhoEmEquipe(Double trabalhoEmEquipe) {
         this.trabalhoEmEquipe = trabalhoEmEquipe;
-    }
-
-    public float getLideranca() {
-        return lideranca;
-    }
-
-    public void setLideranca(float lideranca) {
-        this.lideranca = lideranca;
-    }
-
-    public float getMotivacao() {
-        return motivacao;
-    }
-
-    public void setMotivacao(float motivacao) {
-        this.motivacao = motivacao;
-    }
-
-    public float getCriatividade() {
-        return criatividade;
-    }
-
-    public void setCriatividade(float criatividade) {
-        this.criatividade = criatividade;
-    }
-
-    public Aluno getAlunoIdaluno() {
-        return alunoIdaluno;
-    }
-
-    public void setAlunoIdaluno(Aluno alunoIdaluno) {
-        this.alunoIdaluno = alunoIdaluno;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idrelatorioparental != null ? idrelatorioparental.hashCode() : 0);
+        hash += (idRelatorioParental != null ? idRelatorioParental.hashCode() : 0);
         return hash;
     }
 
@@ -170,7 +128,7 @@ public class Relatorioparental implements Serializable {
             return false;
         }
         Relatorioparental other = (Relatorioparental) object;
-        if ((this.idrelatorioparental == null && other.idrelatorioparental != null) || (this.idrelatorioparental != null && !this.idrelatorioparental.equals(other.idrelatorioparental))) {
+        if ((this.idRelatorioParental == null && other.idRelatorioParental != null) || (this.idRelatorioParental != null && !this.idRelatorioParental.equals(other.idRelatorioParental))) {
             return false;
         }
         return true;
@@ -178,7 +136,7 @@ public class Relatorioparental implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifpe.recife.pdsw.model.Relatorioparental[ idrelatorioparental=" + idrelatorioparental + " ]";
+        return "br.edu.ifpe.recife.pdsw.model.Relatorioparental[ idRelatorioParental=" + idRelatorioParental + " ]";
     }
-    
+
 }

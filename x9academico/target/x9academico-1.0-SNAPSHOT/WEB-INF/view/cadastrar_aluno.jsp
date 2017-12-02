@@ -129,14 +129,6 @@
                                 <input type="text" class="form-control" name="cpf_resp" id="cpf_responsavel_aluno" value="" placeholder="Digite o CPF" required>
                             </div>
                             <div class="form-group">
-                                <label for="rg">RG:</label>
-                                <input type="text" class="form-control" name="rg_resp" id="rg_responsavel_aluno" value="" placeholder="Digite o RG" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="grau_parentesco">Parentesco:</label>
-                                <input type="text" class="form-control" name="grau_parentesco_resp" id="grau_parentesco_aluno" value="" placeholder="Digite o grau de parentesco" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="login_resp">Login:</label>
                                 <input type="text" class="form-control" name="login_resp" id="login_resp" value="" placeholder="Digite o login" required>
                             </div>
@@ -145,8 +137,8 @@
                                 <input type="password" class="form-control" name="senha_resp" id="senha_responsavel_aluno" value="" placeholder="Digite a sennha - Min. 08 Max. 12 caracteres" required>
                             </div>
                             <div class="form-group">
-                                <label for="senha">Confirmar senha:</label>
-                                <input type="password" class="form-control" name="senha_resp" id="senha_responsavel_aluno" value="" placeholder="Digite a sennha - Min. 08 Max. 12 caracteres" required>
+                                <label for="senha">Confirma Senha:</label>
+                                <input type="password" class="form-control" name="confirma_senha_resp" id="confir_senha_responsavel" value="" placeholder="Digite a sennha - Min. 08 Max. 12 caracteres" required>
                             </div>
                             <div class="form-group">
                                 <input href="CadastroAlunoServlet" type="submit" class="btn btn-default" name="btn_cadastro_aluno" value="Cadastrar"/>

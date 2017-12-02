@@ -96,6 +96,8 @@ public class EditarAlunoServlet extends HttpServlet {
         alunoEditado.setDeficiencia(deficiencia);
         alunoEditado.setMatricula(aluno.getMatricula());
         alunoEditado.setTurma(aluno.getTurma());
+        alunoEditado.setRelatorioParental(aluno.getRelatorioParental());
+        alunoEditado.setResponsavel(aluno.getResponsavel());
 
         atualizar(alunoEditado);
 

@@ -21,7 +21,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -52,20 +51,20 @@ public class Aluno implements Serializable {
     @Column(name = "data_nascimento")
     private Date dataNascimento;
 
-    @Size(min = 3, max = 3)
+    @Size(min = 3, max = 4)
     @NotBlank
     @Column(name = "deficiencia")
     private String deficiencia;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idRelatorioParental", referencedColumnName = "idRelatorioParental")
-    private RelatorioParental relatorioParental;
+    private Relatorioparental relatorioParental;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "idTurma", referencedColumnName = "idTurma")
     private Turma turma;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "idResponsavel", referencedColumnName = "idResponsavel")
     private Responsavel responsavel;
 
@@ -116,11 +115,11 @@ public class Aluno implements Serializable {
         this.deficiencia = deficiencia;
     }
 
-    public RelatorioParental getRelatorioParental() {
+    public Relatorioparental getRelatorioParental() {
         return relatorioParental;
     }
 
-    public void setRelatorioParental(RelatorioParental relatorioParental) {
+    public void setRelatorioParental(Relatorioparental relatorioParental) {
         this.relatorioParental = relatorioParental;
     }
 

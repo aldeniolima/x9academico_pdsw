@@ -4,11 +4,11 @@ br\edu\ifpe\recife\pdsw\controller\Menu.class
 br\edu\ifpe\recife\pdsw\controller\LoginServlet.class
 br\edu\ifpe\recife\pdsw\controller\ExcluirTurmaServlet.class
 br\edu\ifpe\recife\pdsw\model\Professor.class
+br\edu\ifpe\recife\pdsw\model\Relatorioparental.class
 br\edu\ifpe\recife\pdsw\model\Professor_.class
 br\edu\ifpe\recife\pdsw\model\Usuario_.class
 br\edu\ifpe\recife\pdsw\controller\EditarProf.class
 br\edu\ifpe\recife\pdsw\controller\MainServlet.class
-br\edu\ifpe\recife\pdsw\model\RelatorioParental_.class
 br\edu\ifpe\recife\pdsw\controller\ExcluirAlunoServlet.class
 br\edu\ifpe\recife\pdsw\controller\AlterarAlunoServlet.class
 br\edu\ifpe\recife\pdsw\model\Endereco_.class
@@ -17,12 +17,12 @@ br\edu\ifpe\recife\pdsw\controller\ExcluirProfServlet.class
 br\edu\ifpe\recife\pdsw\controller\CadastroAlunoServlet.class
 br\edu\ifpe\recife\pdsw\controller\LogoutServlet.class
 br\edu\ifpe\recife\pdsw\model\Aluno.class
+br\edu\ifpe\recife\pdsw\model\Relatorioparental_.class
 br\edu\ifpe\recife\pdsw\model\Endereco.class
 br\edu\ifpe\recife\pdsw\controller\AlterarProfServlet.class
 br\edu\ifpe\recife\pdsw\controller\EditarAlunoServlet.class
 br\edu\ifpe\recife\pdsw\model\Administrador.class
 br\edu\ifpe\recife\pdsw\model\Responsavel.class
-br\edu\ifpe\recife\pdsw\model\RelatorioParental.class
 br\edu\ifpe\recife\pdsw\controller\AlterarTurmaServlet.class
 br\edu\ifpe\recife\pdsw\controller\CadastroTurmaServlet.class
 br\edu\ifpe\recife\pdsw\model\FormataData.class

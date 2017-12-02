@@ -3,7 +3,7 @@ package br.edu.ifpe.recife.pdsw.controller;
 import br.edu.ifpe.recife.pdsw.model.Aluno;
 import br.edu.ifpe.recife.pdsw.model.Endereco;
 import br.edu.ifpe.recife.pdsw.model.FormataData;
-import br.edu.ifpe.recife.pdsw.model.RelatorioParental;
+import br.edu.ifpe.recife.pdsw.model.Relatorioparental;
 import br.edu.ifpe.recife.pdsw.model.Responsavel;
 import br.edu.ifpe.recife.pdsw.model.Turma;
 import br.edu.ifpe.recife.pdsw.model.Usuario;
@@ -82,7 +82,6 @@ public class CadastroAlunoServlet extends HttpServlet {
         String telefone_resp = request.getParameter("telefone_resp");
         String email_resp = request.getParameter("email_resp");
         String cpf_resp = request.getParameter("cpf_resp");
-        String rg_resp = request.getParameter("rg_resp");
         String login_resp = request.getParameter("login_resp");
         String senha_resp = request.getParameter("senha_resp");
         String confirma_senha_resp = request.getParameter("confirma_senha_resp");
@@ -90,7 +89,6 @@ public class CadastroAlunoServlet extends HttpServlet {
         String cidade_resp = request.getParameter("cidade_resp");
         int numero_resp = Integer.parseInt(request.getParameter("numero_resp"));
         String UF_resp = request.getParameter("UF_resp");
-        String parentesco = request.getParameter("grau_parentesco_resp");
 
         Usuario user = getSingleUsuario(login_resp);
         if (user != null) {
@@ -101,7 +99,7 @@ public class CadastroAlunoServlet extends HttpServlet {
                 Aluno aluno = new Aluno();
                 Responsavel responsavel = new Responsavel();
                 Endereco end = new Endereco();
-                RelatorioParental relatorio = new RelatorioParental();
+                Relatorioparental relatorio = new Relatorioparental();
 
                 end.setCep(cep_resp);
                 end.setCidade(cidade_resp);
@@ -141,6 +139,7 @@ public class CadastroAlunoServlet extends HttpServlet {
                 aluno.setTurma(getSingleTurma(turma_aluno));
                 aluno.setResponsavel(inserirResp(responsavel));
                 aluno.setRelatorioParental(inserirRel(relatorio));
+                
                 inserirAln(aluno);
 
             } else {
@@ -263,7 +262,7 @@ public class CadastroAlunoServlet extends HttpServlet {
 
     }
 
-    public RelatorioParental inserirRel(RelatorioParental entity) {
+    public Relatorioparental inserirRel(Relatorioparental entity) {
         EntityManager em = null;
         EntityTransaction et = null;
 

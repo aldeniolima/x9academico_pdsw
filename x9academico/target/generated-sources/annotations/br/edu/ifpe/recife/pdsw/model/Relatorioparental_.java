@@ -1,23 +1,19 @@
 package br.edu.ifpe.recife.pdsw.model;
 
-import br.edu.ifpe.recife.pdsw.model.Aluno;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-11-27T15:27:53")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-12-01T22:15:20")
 @StaticMetamodel(Relatorioparental.class)
 public class Relatorioparental_ { 
 
-    public static volatile SingularAttribute<Relatorioparental, Integer> idrelatorioparental;
     public static volatile SingularAttribute<Relatorioparental, String> observacoes;
-    public static volatile SingularAttribute<Relatorioparental, Float> facilidadeComDisciplina;
-    public static volatile SingularAttribute<Relatorioparental, Float> lideranca;
-    public static volatile SingularAttribute<Relatorioparental, Float> participacaoEmSala;
-    public static volatile SingularAttribute<Relatorioparental, Float> comportamento;
-    public static volatile SingularAttribute<Relatorioparental, Float> trabalhoEmEquipe;
-    public static volatile SingularAttribute<Relatorioparental, Float> criatividade;
-    public static volatile SingularAttribute<Relatorioparental, Float> motivacao;
-    public static volatile SingularAttribute<Relatorioparental, Aluno> alunoIdaluno;
+    public static volatile SingularAttribute<Relatorioparental, Long> idRelatorioParental;
+    public static volatile SingularAttribute<Relatorioparental, Double> lideranca;
+    public static volatile SingularAttribute<Relatorioparental, Double> participacaoEmSala;
+    public static volatile SingularAttribute<Relatorioparental, Double> trabalhoEmEquipe;
+    public static volatile SingularAttribute<Relatorioparental, Double> criatividade;
+    public static volatile SingularAttribute<Relatorioparental, Double> motivacao;
 
 }
