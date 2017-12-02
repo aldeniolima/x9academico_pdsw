@@ -51,6 +51,7 @@
                 <div class="row">
                     <div id="caixa_conteudo">
                         <h3>Alunos</h3>
+                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                         <div id="mensagem" style="height: 50px;">
                             <c:if test="${mensagens.existeErros}">
                                 <div id="erro" class="alert">
@@ -72,6 +73,7 @@
                                         <th>Nome</th>
                                         <th>Data de Nascimento</th>
                                         <th>Deficiência</th>
+                                        <th>Opção</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,6 +83,7 @@
                                             <td>${aluno.nome}</td>
                                             <td>${aluno.dataNascimento}</td>
                                             <td>${aluno.deficiencia}</td>
+                                            <td><a href="Menu?acao=notas&A=${aluno.idAluno}">Exibir notas</a></td>
                                         </tr>
                                     </c:forEach>
 

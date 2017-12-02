@@ -45,6 +45,7 @@
                 <div class="row">
                     <div id="caixa_conteudo">
                         <h3>Turmas</h3>
+                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                         <div id="mensagem" style="height: 50px;">
                             <c:if test="${mensagens.existeErros}">
                                 <div id="erro" class="alert">
@@ -64,19 +65,22 @@
                                         <th>Código</th>
                                         <th>Série</th>
                                         <th>Sala</th>
+                                        <th>Turno</th>
                                         <th>Quantidade máxima de alunos</th>
                                         <th>Opções</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:forEach var="turma" items="${usuarioLogado.turmas}">
                                         <tr>
-                                            <td>${usuarioLogado.idturma.idturma}</td>
-                                            <td>${usuarioLogado.idturma.serie}</td>
-                                            <td>${usuarioLogado.idturma.numerosala}</td>
-                                            <td>${usuarioLogado.idturma.qtdAluno}</td>
-                                            <td><a href="Menu?acao=listar_alunos">Listar Alunos</a></td>
+                                            <td>${turma.idTurma}</td>
+                                            <td>${turma.serie}</td>
+                                            <td>${turma.numeroSala}</td>
+                                            <td>${turma.turno}</td>
+                                            <td>${turma.qtdAluno}</td>
+                                            <td><a href="Menu?acao=listar_alunos&T=${turma.idTurma}">Listar Alunos</a></td>
                                         </tr>
-
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

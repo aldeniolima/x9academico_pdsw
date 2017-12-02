@@ -44,6 +44,7 @@
                 <div class="row">
                     <div id="caixa_conteudo">
                         <h3>Turmas</h3>
+                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                         <div id="mensagem" style="height: 70px;">
                             <c:if test="${mensagens.existeErros}">
                                 <div id="erro" class="alert">

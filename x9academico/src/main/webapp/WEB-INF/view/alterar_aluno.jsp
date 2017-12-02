@@ -45,6 +45,7 @@
                 <div class="row">
                     <div id="caixa_conteudo">
                         <h3>Alunos</h3>
+                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                         <div id="mensagem" style="height: 50px;">
                             <c:if test="${mensagens.existeErros}">
                                 <div id="erro" class="alert">
@@ -61,7 +62,7 @@
                                 <form method="post" action="${pageContext.request.contextPath}/AlterarAlunoServlet">
                                     <label for="turma">Turma:</label>
                                     <select class="form-control" name="id_turma">
-                                        
+
                                         <c:forEach var="Turma" items="${listaTurmas}">
                                             <option value="${Turma.idTurma}">Série: ${Turma.serie}</option>
                                         </c:forEach>

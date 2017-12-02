@@ -22,7 +22,7 @@
                 </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="Menu?acao=dados_pessoais">
                     <span class="nav-link-text">Dados Pessoais</span>
                 </a>
             </li>

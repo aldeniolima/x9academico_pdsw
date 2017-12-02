@@ -135,7 +135,10 @@ public class Menu extends HttpServlet {
                         rd = request.getRequestDispatcher("WEB-INF/view/listar_alunos.jsp");
                         rd.forward(request, response);
                         break;
-
+                    case "dados_pessoais":
+                        rd = request.getRequestDispatcher("WEB-INF/view/dados_pessoais.jsp");
+                        rd.forward(request, response);
+                        break;
                     case "construindo":
 
                         rd = request.getRequestDispatcher("WEB-INF/view/construindo.jsp");
@@ -153,11 +156,35 @@ public class Menu extends HttpServlet {
                         rd = request.getRequestDispatcher("WEB-INF/view/listar_turmas_prof.jsp");
                         rd.forward(request, response);
                         break;
-                
-                  case "listar_alunos":
-                        Professor prof = (Professor) usuario;
-                        request.setAttribute("listaAlunos", prof.getTurmas());
+
+                    case "listar_alunos":
+                        String idString = request.getParameter("T");
+                        if (idString.isEmpty()) {
+
+                        } else {
+                            Integer id = Integer.parseInt(idString);
+                            List alunos = listarAlunosProf(getSingleID(id));
+                            request.setAttribute("listaAlunos", alunos);
+                        }
+
                         rd = request.getRequestDispatcher("WEB-INF/view/listar_alunos_prof.jsp");
+                        rd.forward(request, response);
+                        break;
+                    case "notas":
+                        String idStringAln = request.getParameter("A");
+                        if (idStringAln.isEmpty()) {
+                            rd = request.getRequestDispatcher("WEB-INF/view/menu_prof.jsp");
+                        } else {
+                            Integer idAln = Integer.parseInt(idStringAln);
+                            Aluno alunos = buscarAln(idAln);
+                            request.setAttribute("notas", alunos.getRelatorioParental());
+                            rd = request.getRequestDispatcher("WEB-INF/view/notas.jsp");
+                        }
+                        
+                        rd.forward(request, response);
+                        break;
+                    case "dados_pessoais":
+                        rd = request.getRequestDispatcher("WEB-INF/view/dados_pessoais.jsp");
                         rd.forward(request, response);
                         break;
                 }
@@ -277,10 +304,11 @@ public class Menu extends HttpServlet {
             return null;
         }
     }
-    public List<Aluno> listarAlunosProf(Turma turma){
-      EntityManager em = EMF.createEntityManager();
 
-        String jpa = "SELECT u FROM Aluno u Where u.idTurma = ?1";
+    public List<Aluno> listarAlunosProf(Turma turma) {
+        EntityManager em = EMF.createEntityManager();
+
+        String jpa = "SELECT u FROM Aluno u Where u.turma = ?1";
         Query query = em.createQuery(jpa);
         query.setParameter(1, turma);
         try {
