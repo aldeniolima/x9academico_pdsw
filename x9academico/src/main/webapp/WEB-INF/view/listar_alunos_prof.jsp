@@ -83,9 +83,10 @@
                                             <td>${aluno.nome}</td>
                                             <td>${aluno.dataNascimento}</td>
                                             <td>${aluno.deficiencia}</td>
-                                            <td><a href="Menu?acao=notas&A=${aluno.idAluno}">Exibir notas</a></td>
-                                        </tr>
-                                    </c:forEach>
+                                  <!--  <input type="hidden" name="A" value=""/> -->
+                                    <td><a href="Menu?acao=notas&A=${aluno.idAluno}">Exibir notas</a></td>
+                                    </tr>
+                                </c:forEach>
 
                             </table>
                         </div>

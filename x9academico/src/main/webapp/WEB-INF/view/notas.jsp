@@ -4,12 +4,6 @@
     Author     : joselima
 --%>
 
-<%-- 
-    Document   : listar_alunos_prof
-    Created on : 27/11/2017, 16:18:23
-    Author     : joselima
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,6 +17,8 @@
         <!--        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">-->
         <!-- CSS-->
         <link href="css/sb-admin.css" rel="stylesheet">
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
+
         <style>
             #caixa_conteudo{
                 height: auto;
@@ -75,18 +71,27 @@
                                         <th>Motivação</th>
                                         <th>Criatividade</th>
                                         <th>Observações</th>
+                                        <th>Opções</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        <tr>
-                                            <td>${notas.lideranca}</td>
-                                            <td>${notas.trabalhoEmEquipe}</td>
-                                            <td>${notas.participacaoEmSala}</td>
-                                            <td>${notas.motivacao}</td>
-                                            <td>${notas.criatividade}</td>
-                                            <td>${notas.observacoes}</td>
-                                            <td><a href="#">Editar</a></td>
-                                        </tr>
+                                    <tr>
+                                <form action="EditarNotas" method="post">
+                                    <td><input type="text" class="form-control" id="nota" name="lideranca" value="${notas.lideranca}" ></td>
+                                    <td><input type="text" class="form-control" id="nota" name="trabalhoEmEquipe" value="${notas.trabalhoEmEquipe}" ></td>
+                                    <td><input type="text" class="form-control" id="nota" name="participacaoEmSala" value="${notas.participacaoEmSala}" ></td>
+                                    <td><input type="text" class="form-control" id="nota" name="motivacao" value="${notas.motivacao}" ></td>
+                                    <td><input type="text" class="form-control" id="nota" name="criatividade" value="${notas.criatividade}" ></td>
+                                    <td><input type="text" class="form-control" id="nota" name="observacoes" value="${notas.observacoes}"></td>
+                                    
+                                    <td>
+                                        <a href="#" role="button" title="Editar" id="editar_notas" onclick="Edita_nts()"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                        <input type="hidden" class="btn btn-default" id="btn_salvar_notas" value="Salvar">
+                                        <input type="hidden" name="A" value="${A}">
+                                    </td>
+                                </form>
+
+                                </tr>
                             </table>
                         </div>
 

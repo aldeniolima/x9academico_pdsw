@@ -176,11 +176,16 @@ public class Menu extends HttpServlet {
                             rd = request.getRequestDispatcher("WEB-INF/view/menu_prof.jsp");
                         } else {
                             Integer idAln = Integer.parseInt(idStringAln);
-                            Aluno alunos = buscarAln(idAln);
-                            request.setAttribute("notas", alunos.getRelatorioParental());
-                            rd = request.getRequestDispatcher("WEB-INF/view/notas.jsp");
+                            Aluno aluno = buscarAln(idAln);
+                            if (aluno.getTurma().getProfessor().getNome().equals(usuario.getNome())) {
+                                request.setAttribute("A", idAln);
+                                request.setAttribute("notas", aluno.getRelatorioParental());
+                                rd = request.getRequestDispatcher("WEB-INF/view/notas.jsp");
+                            } else {
+                                rd = request.getRequestDispatcher("WEB-INF/view/menu_prof.jsp");
+                            }
                         }
-                        
+
                         rd.forward(request, response);
                         break;
                     case "dados_pessoais":
