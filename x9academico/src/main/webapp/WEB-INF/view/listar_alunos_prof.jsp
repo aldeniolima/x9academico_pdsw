@@ -51,7 +51,7 @@
                 <div class="row">
                     <div id="caixa_conteudo">
                         <h3>Alunos</h3>
-                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                        <a href="javascript:window.history.go(-1)"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                         <div id="mensagem" style="height: 50px;">
                             <c:if test="${mensagens.existeErros}">
                                 <div id="erro" class="alert">

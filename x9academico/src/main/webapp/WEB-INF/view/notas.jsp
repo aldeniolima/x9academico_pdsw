@@ -47,7 +47,7 @@
                 <div class="row">
                     <div id="caixa_conteudo">
                         <h3>Notas</h3>
-                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                        <a href="javascript:window.history.go(-1)"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                         <div id="mensagem" style="height: 50px;">
                             <c:if test="${mensagens.existeErros}">
                                 <div id="erro" class="alert">
@@ -70,29 +70,28 @@
                                         <th>Participação em Sala</th>
                                         <th>Motivação</th>
                                         <th>Criatividade</th>
-                                        <th>Observações</th>
                                         <th>Opções</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                 <form action="EditarNotas" method="post">
-                                    <td><input type="text" class="form-control" id="nota" name="lideranca" value="${notas.lideranca}" ></td>
-                                    <td><input type="text" class="form-control" id="nota" name="trabalhoEmEquipe" value="${notas.trabalhoEmEquipe}" ></td>
-                                    <td><input type="text" class="form-control" id="nota" name="participacaoEmSala" value="${notas.participacaoEmSala}" ></td>
-                                    <td><input type="text" class="form-control" id="nota" name="motivacao" value="${notas.motivacao}" ></td>
-                                    <td><input type="text" class="form-control" id="nota" name="criatividade" value="${notas.criatividade}" ></td>
-                                    <td><input type="text" class="form-control" id="nota" name="observacoes" value="${notas.observacoes}"></td>
-                                    
-                                    <td>
-                                        <a href="#" role="button" title="Editar" id="editar_notas" onclick="Edita_nts()"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                                        <input type="hidden" class="btn btn-default" id="btn_salvar_notas" value="Salvar">
-                                        <input type="hidden" name="A" value="${A}">
-                                    </td>
-                                </form>
+                                        <td><input type="text" class="form-control nota" name="lideranca" value="${notas.lideranca}" disabled=""></td>
+                                        <td><input type="text" class="form-control nota" name="trabalhoEmEquipe" value="${notas.trabalhoEmEquipe}" disabled=""></td>
+                                        <td><input type="text" class="form-control nota" name="participacaoEmSala" value="${notas.participacaoEmSala}" disabled=""></td>
+                                        <td><input type="text" class="form-control nota" name="motivacao" value="${notas.motivacao}" disabled=""></td>
+                                        <td><input type="text" class="form-control nota" name="criatividade" value="${notas.criatividade}" disabled=""></td>
 
-                                </tr>
+                                        <td>
+                                            <a href="#" role="button" title="Editar" id="editar_notas" onclick="Edita_nts()"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                            <input type="hidden" href="EditarNotas" class="btn btn-default" id="btn_salvar_notas" value="Salvar">
+                                            <input type="hidden" name="A" value="${A}">
+                                        </td>
+                                    </tr>
                             </table>
+                            <label for="obs" style="font-weight: bold">Observações</label>
+                            <textarea class="form-control nota" name="observacoes" disabled="">${notas.observacoes}</textarea>
+                            </form>
                         </div>
 
                     </div>
@@ -102,6 +101,49 @@
                 <div style="height: 1000px;"></div>
             </div>
             <!-- final conteudo-->
+
+
+            <div class="modal fade" id="formLogin" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Login</h4>
+                            <c:if test="${mensagens.existeErros}">
+                                <div id="erro">
+                                    <ul>
+                                        <c:forEach var="erro" items="${mensagens.erros}">
+                                            <li> ${erro} </li>
+                                            </c:forEach>
+                                    </ul>
+                                </div>
+                            </c:if>
+                        </div>
+                        <div class="modal-body" style="padding:40px 60px;">
+                            <form method="post" action="index.jsp">
+                                <div class="form-group">
+                                    <label for="login">Login:</label>
+                                    <input type="text" class="form-control" name="login" id="nome_login" value="${param.login}" placeholder="Insira seu login" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="senha">Senha:</label>
+                                    <input type="password" class="form-control" name="senha" id="senha_login" placeholder="Insira sua senha" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-default" name="bOK" value="Entrar"/>
+                                    <!-- btn btn-success btn-block -->
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer" style="padding:40px 50px;">
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
             <!-- footer -->
             <%@include file="footer.jsp"%>
