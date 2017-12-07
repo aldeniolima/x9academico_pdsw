@@ -18,25 +18,30 @@
         <link href="${pageContext.request.contextPath}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Custom styles for this template-->
         <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
+        <!-- JS -->
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
     </head>
     <body class="bg-dark">
 
         <div class="container">
-            
-            <div class="card card-login mx-auto mt-5">
+
+            <div class="card card-login mx-auto mt-5" id="card_login">
                 <div class="card-header">X9-Acadêmico   <img src="img/logo.png" width="35px" style="margin:0px auto; text-align: center; float: right;"></div>
                 <div class="card-body">
                     <form method="post" action="LoginServlet">
                         <div class="form-group">
-                            <label for="login">Login:</label>
-                            <input class="form-control" name="login" type="text" placeholder="Login" required="required">
+                            <label for="login">Login:</label>                      
+                            <input class="form-control has-feedback" name="login" type="text" placeholder="Login" onkeyup="verificaLogin(this)" data-toggle="popover" data-trigger="hover" data-content="Apenas letras, números, _ e ." required="required">           
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha:</label>
-                            <input class="form-control" name="senha" type="password" placeholder="Senha" required="required">
+                            <input class="form-control" name="senha" type="password" placeholder="Senha" onkeyup="verificaSenha(this)" data-toggle="popover" data-trigger="hover" data-content="Mínimo de 6, máximo 20 caracteres" required="required">
                         </div>
-                        <input type="submit"class="btn btn-primary btn-block" value="Entrar">
+                        <input type="submit" id="btn_login" class="btn btn-primary btn-block" value="Entrar">
                     </form>
+                    <div class="text-center">                        
+                        <a class="d-block small mt-3" href="#">Não consegue acessar?</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,5 +51,11 @@
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <script>
+                            $(document).ready(function () {
+                                $('[data-toggle="popover"]').popover();
+                            });
+        </script>
     </body>
 </html>
