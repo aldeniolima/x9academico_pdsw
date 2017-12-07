@@ -13,13 +13,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>X9-Acadêmico</title>
         <!-- Bootstrap core CSS-->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom fonts for this template-->
-        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
     </head>
-    <body style="background-color: #e3f2fd;">
+    <body class="bg-dark">
 
         <div class="container">
             
