@@ -43,82 +43,87 @@
 
         <div class="content-wrapper">
             <div class="container-fluid">
-                <!-- Conteudo-->
+                <!-- Conteudo--
 
                 <div class="row">
-                    <div id="caixa_conteudo" style="width: 1100px">
-                        <h3>Professores</h3>
-                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
-                        <div id="mensagem" style="height: 50px;">
-                            <c:if test="${mensagens.existeErros}">
-                                <div id="erro" class="alert">
-                                    <ul  id="ul_erro">
-                                        <c:forEach var="erro" items="${mensagens.erros}">
-                                            <li> ${erro} </li>
-                                            </c:forEach>
-                                    </ul>
-                                </div>
-                            </c:if>
-                        </div>
-                        <div id="lista_professores" class="table-responsive">
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Login</th>
-                                        <th>Data de Nascimento</th>
-                                        <th>CPF</th>
-                                        <th>Telefone</th>
-                                        <th>Email</th>
-                                        <th>Turmas</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-
-                                    <c:forEach var="professor" items="${listaProf}">
-                                        <tr>
-                                            <td>${professor.nome}</td>
-                                            <td>${professor.login}</td>
-                                            <td>${professor.dataNascimento}</td>
-                                            <td>${professor.cpf}</td>
-                                            <td>${professor.telefone}</td>
-                                            <td>${professor.email}</td>
-                                            <td>
-                                                <c:forEach var="turma" items="${professor.turmas}">
-                                                    ${turma.serie} 
-                                                </c:forEach>
-                                            </td>
-                                        </tr>
-
+                    <div id="caixa_conteudo" style="width: 1100px"> -->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="Menu?acao=Home">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Professores</li>
+                    <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                </ol>
+                <div id="mensagem" style="height: 50px;">
+                    <c:if test="${mensagens.existeErros}">
+                        <div id="erro" class="alert">
+                            <ul  id="ul_erro">
+                                <c:forEach var="erro" items="${mensagens.erros}">
+                                    <li> ${erro} </li>
                                     </c:forEach>
-
-                                </tbody>
-
-
-                            </table>
+                            </ul>
                         </div>
+                    </c:if>
+                </div>
+                <div id="lista_professores" class="table-responsive">
 
-                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Login</th>
+                                <th>Data de Nascimento</th>
+                                <th>CPF</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                                <th>Turmas</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            <c:forEach var="professor" items="${listaProf}">
+                                <tr>
+                                    <td>${professor.nome}</td>
+                                    <td>${professor.login}</td>
+                                    <td>${professor.dataNascimento}</td>
+                                    <td>${professor.cpf}</td>
+                                    <td>${professor.telefone}</td>
+                                    <td>${professor.email}</td>
+                                    <td>
+                                        <c:forEach var="turma" items="${professor.turmas}">
+                                            ${turma.serie} 
+                                        </c:forEach>
+                                    </td>
+                                </tr>
+
+                            </c:forEach>
+
+                        </tbody>
+
+
+                    </table>
                 </div>
 
-                <!-- div para dar altura-->
-                <div style="height: 1000px;"></div>
             </div>
-            <!-- final conteudo-->
-
-            <!-- footer -->
-            <%@include file="footer.jsp"%>
-            <!-- final footer -->
         </div>
-        <!-- final paginas -->
 
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- div para dar altura-->
+        <div style="height: 1000px;"></div>
+    </div>
+    <!-- final conteudo-->
 
-        <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    </body>
+    <!-- footer -->
+    <%@include file="footer.jsp"%>
+    <!-- final footer -->
+</div>
+<!-- final paginas -->
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
 </html>

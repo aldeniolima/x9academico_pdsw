@@ -15,17 +15,20 @@
             <img src="img/logo.png" width="150px" style="margin:0px auto">
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menuTurmas" data-parent="#fechaMenu">
+                    <i class="fa fa-users"></i>
                     <span class="nav-link-text">Turmas</span>
                     <!--<span class="glyphicon glyphicon-triangle-right"></span> -->
                 </a>
                 <ul class="sidenav-second-level collapse" id="menuTurmas">
                     <li>
+                        <i class="fa fa-users"></i>
                         <a href="Menu?acao=listar_turmas">Listar Turmas</a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                 <a class="nav-link" href="Menu?acao=dados_pessoais">
+                    <i class="fa fa-id-card-o"></i>
                     <span class="nav-link-text">Dados Pessoais</span>
                 </a>
             </li>
@@ -36,7 +39,7 @@
                 <a class="nav-link" style="cursor: auto;">Bem-vindo, ${usuarioLogado.nome}!</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="LogoutServlet">Sair</a>
+                <a class="nav-link" href="LogoutServlet"><i class="fa fa-fw fa-sign-out"></i>Sair</a>
             </li>
         </ul>
     </div>

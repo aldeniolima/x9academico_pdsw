@@ -43,12 +43,17 @@
 
         <div class="content-wrapper">
             <div class="container-fluid">
-                <!-- Conteudo-->
+                <!-- Conteudo
 
                 <div class="row">
-                    <div id="caixa_conteudo">
-                        <h3>Turmas</h3>
-                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                    <div id="caixa_conteudo"> -->
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="Menu?acao=Home">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active">Turmas</li>
+                            <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                        </ol>
                         <div id="mensagem" style="height: 70px;">
                             <c:if test="${mensagens.existeErros}">
                                 <div id="erro" class="alert">
@@ -92,9 +97,6 @@
 
                             </table>
                         </div>
-
-                    </div>
-                </div>
 
                 <!-- div para dar altura-->
                 <div style="height: 1000px;"></div>

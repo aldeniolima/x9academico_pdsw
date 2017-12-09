@@ -44,77 +44,82 @@
 
         <div class="content-wrapper">
             <div class="container-fluid">
-                <!-- Conteudo-->
+                <!-- Conteudo--
 
                 <div class="row">
-                    <div id="caixa_conteudo">
-                        <h3>Alunos</h3>
-                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
-                        <div id="mensagem" style="height: 50px;">
-                            <c:if test="${mensagens.existeErros}">
-                                <div id="erro" class="alert">
-                                    <ul  id="ul_erro">
-                                        <c:forEach var="erro" items="${mensagens.erros}">
-                                            <li> ${erro} </li>
-                                            </c:forEach>
-                                    </ul>
-                                </div>
-                            </c:if>
-                        </div>
-                        <div id="lista_alunos" class="table-responsive">
-                            <div class="form-group">         
-                                <label for="turma">Turma:</label>
-                                <form method="post" action="${pageContext.request.contextPath}/ListarAlunoServlet">
-                                    <select class="form-control" name="id_turma">
-
-                                        <c:forEach var="Turma" items="${listaTurmas}">
-                                            <option value="${Turma.idTurma}">Série: ${Turma.serie}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <input href="" type="submit" class="btn btn-default" name="btn_lista_aluno" value="Buscar"/>
-                                </form>
-                            </div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Matricula</th>
-                                        <th>Nome</th>
-                                        <th>Data de Nascimento</th>
-                                        <th>Deficiência</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="aluno" items="${listaAluno}">
-                                        <tr>
-                                            <td>${aluno.matricula}</td>
-                                            <td>${aluno.nome}</td>
-                                            <td>${aluno.dataNascimento}</td>
-                                            <td>${aluno.deficiencia}</td>
-                                        </tr>
+                    <div id="caixa_conteudo"> -->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="Menu?acao=Home">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Alunos</li>
+                    <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                </ol>
+                <div id="mensagem" style="height: 50px;">
+                    <c:if test="${mensagens.existeErros}">
+                        <div id="erro" class="alert">
+                            <ul  id="ul_erro">
+                                <c:forEach var="erro" items="${mensagens.erros}">
+                                    <li> ${erro} </li>
                                     </c:forEach>
-
-                            </table>
+                            </ul>
                         </div>
+                    </c:if>
+                </div>
+                <div id="lista_alunos" class="table-responsive">
+                    <div class="form-group">         
+                        <label for="turma">Turma:</label>
+                        <form method="post" action="${pageContext.request.contextPath}/ListarAlunoServlet">
+                            <select class="form-control" name="id_turma">
 
+                                <c:forEach var="Turma" items="${listaTurmas}">
+                                    <option value="${Turma.idTurma}">Série: ${Turma.serie}</option>
+                                </c:forEach>
+                            </select>
+                            <input href="" type="submit" class="btn btn-default" name="btn_lista_aluno" value="Buscar"/>
+                        </form>
                     </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Matricula</th>
+                                <th>Nome</th>
+                                <th>Data de Nascimento</th>
+                                <th>Deficiência</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="aluno" items="${listaAluno}">
+                                <tr>
+                                    <td>${aluno.matricula}</td>
+                                    <td>${aluno.nome}</td>
+                                    <td>${aluno.dataNascimento}</td>
+                                    <td>${aluno.deficiencia}</td>
+                                </tr>
+                            </c:forEach>
+
+                    </table>
                 </div>
 
-                <!-- div para dar altura-->
-                <div style="height: 1000px;"></div>
             </div>
-            <!-- final conteudo-->
-
-            <!-- footer -->
-            <%@include file="footer.jsp"%>
-            <!-- final footer -->
         </div>
-        <!-- final paginas -->
 
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- div para dar altura-->
+        <div style="height: 1000px;"></div>
+    </div>
+    <!-- final conteudo-->
 
-        <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    </body>
+    <!-- footer -->
+    <%@include file="footer.jsp"%>
+    <!-- final footer -->
+</div>
+<!-- final paginas -->
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
 </html>
 

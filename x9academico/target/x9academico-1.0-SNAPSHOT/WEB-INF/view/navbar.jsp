@@ -15,7 +15,7 @@
             <img src="img/logo.png" width="150px" style="margin:0px auto">
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menuTurmas" data-parent="#fechaMenu">
-                    <i class="fa fa-fw fa-dashboard"></i>
+                    <i class="fa fa-graduation-cap"></i>
                     <span class="nav-link-text">Turmas</span>
                     <!--<span class="glyphicon glyphicon-triangle-right"></span> -->
                 </a>
@@ -33,6 +33,7 @@
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menuProfessor" data-parent="#fechaMenu">
+                    <i class="fa fa-user" aria-hidden="true"></i>
                     <span class="nav-link-text">Professores</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="menuProfessor">
@@ -49,6 +50,7 @@
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menuAluno" data-parent="#fechaMenu">
+                    <i class="fa fa-graduation-cap"></i>
                     <span class="nav-link-text">Alunos</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="menuAluno">
@@ -65,6 +67,7 @@
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                 <a class="nav-link" href="Menu?acao=dados_pessoais">
+                    <i class="fa fa-id-card-o"></i>
                     <span class="nav-link-text">Dados Pessoais</span>
                 </a>
             </li>
@@ -75,7 +78,7 @@
                 <a class="nav-link" style="cursor: auto;">Bem-vindo, ${usuarioLogado.nome}!</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="LogoutServlet">Sair</a>
+                <a class="nav-link" href="LogoutServlet"><i class="fa fa-fw fa-sign-out"></i>Sair</a>
             </li>
         </ul>
     </div>

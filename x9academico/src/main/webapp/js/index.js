@@ -1,3 +1,12 @@
+var btn_login = document.querySelector('#btn_login');
+btn_login.addEventListener("click", function(){
+ alert("Livros excluídos com sucesso!");
+});
+
+function chamaAlertIndex(){
+    var alert = document.getElementById("alertIndex");
+    alert.style.display= "block";
+}
 
 function verificaFormLogin(er, valor, input) {
    var btn = document.getElementById("btn_login");

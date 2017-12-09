@@ -42,6 +42,9 @@
                     <div class="text-center">                        
                         <a class="d-block small mt-3" href="#">Não consegue acessar?</a>
                     </div>
+                    <div class="alert alert-danger text-center mt-3" id="alertIndex" style="display: none;">
+                        <strong>Erro!</strong> Insira os dados corretamente.
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,9 +56,9 @@
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <script>
-                            $(document).ready(function () {
-                                $('[data-toggle="popover"]').popover();
-                            });
+                                $(document).ready(function () {
+                                    $('[data-toggle="popover"]').popover();
+                                });
         </script>
     </body>
 </html>

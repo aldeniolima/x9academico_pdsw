@@ -44,83 +44,87 @@
 
         <div class="content-wrapper">
             <div class="container-fluid">
-                <!-- Conteudo-->
+                <!-- Conteudo--
 
                 <div class="row">
-                    <div id="caixa_conteudo">
-                        <h3>Editar Aluno</h3>
-                        <div id="mensagem" style="height: 50px;">
-                            <c:if test="${mensagens.existeErros}">
-                                <div id="erro" class="alert">
-                                    <ul  id="ul_erro">
-                                        <c:forEach var="erro" items="${mensagens.erros}">
-                                            <li> ${erro} </li>
-                                            </c:forEach>
-                                    </ul>
-                                </div>
-                            </c:if>
+                    <div id="caixa_conteudo"> -->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="Menu?acao=Home">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Editar Aluno</li>
+                    <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                </ol>
+                <div id="mensagem" style="height: 50px;">
+                    <c:if test="${mensagens.existeErros}">
+                        <div id="erro" class="alert">
+                            <ul  id="ul_erro">
+                                <c:forEach var="erro" items="${mensagens.erros}">
+                                    <li> ${erro} </li>
+                                    </c:forEach>
+                            </ul>
                         </div>
-                        <form method="post" action="${pageContext.request.contextPath}/EditarAlunoServlet">
-                            <div class="form-group">
-                                <label for="matricula">Matrícula:</label>
-                                <input type="text" class="form-control" name="matricula" id="matricula_aluno" value="${aluno.matricula}"disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="nome">Nome:</label>
-                                <input type="text" class="form-control" name="nome" id="nome_aluno" value="${aluno.nome}" placeholder="Digite o nome" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="turma">Turma:</label>
-                                  <input type="text" class="form-control" name="turma_aluno" id="turma_aluno" value="${aluno.turma.serie}"  disabled>
-                            </div> 
-                            <div class="form-group">
-                                <label for="data_nascimento">Data de nascimento:</label>
-                                <input type="text" class="form-control" name="data_nascimento" id="data_nascimento_aluno" value="${aluno.dataNascimento}" placeholder="Digite a data de nascimento" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="deficiencia">Deficiência:</label>
-                                <select class="form-control" name="deficiencia_aluno">
-                                    <option>${aluno.deficiencia}</option>
-                                    <option value="Não" required>Não</option>
-                                    <option value="Sim">Sim</option>
-                                </select>
-                            </div>
-                                    
-                                    <div class="form-group">
-                                <input type="submit" class="btn btn-default" name="btn_editar_aluno" value="Salvar"/>
-                                <!-- btn btn-success btn-block -->
-                            </div>
-                    </div>
+                    </c:if>
                 </div>
+                <form method="post" action="${pageContext.request.contextPath}/EditarAlunoServlet">
+                    <div class="form-group">
+                        <label for="matricula">Matrícula:</label>
+                        <input type="text" class="form-control" name="matricula" id="matricula_aluno" value="${aluno.matricula}"disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" name="nome" id="nome_aluno" value="${aluno.nome}" placeholder="Digite o nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="turma">Turma:</label>
+                        <input type="text" class="form-control" name="turma_aluno" id="turma_aluno" value="${aluno.turma.serie}"  disabled>
+                    </div> 
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de nascimento:</label>
+                        <input type="text" class="form-control" name="data_nascimento" id="data_nascimento_aluno" value="${aluno.dataNascimento}" placeholder="Digite a data de nascimento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deficiencia">Deficiência:</label>
+                        <select class="form-control" name="deficiencia_aluno">
+                            <option>${aluno.deficiencia}</option>
+                            <option value="Não" required>Não</option>
+                            <option value="Sim">Sim</option>
+                        </select>
+                    </div>
 
-                <!-- div para dar altura-->
-                <div style="height: 1000px;"></div>
-            </div>
-            <!-- final conteudo-->
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" name="btn_editar_aluno" value="Salvar"/>
+                        <!-- btn btn-success btn-block -->
+                    </div>
 
-            <!-- footer -->
-            <%@include file="footer.jsp"%>
-            <!-- final footer -->
-        </div>
-        <!-- final paginas -->
+        <!-- div para dar altura-->
+        <div style="height: 1000px;"></div>
+    </div>
+    <!-- final conteudo-->
 
-        <script language="Javascript">
-            function confirmacao(id) {
-                var resposta = confirm("Deseja realmente remover a turma?");
-                //  $('#modal_excluir').modal('show'); 
-                //document.getElementById("modal_excluir");
+    <!-- footer -->
+    <%@include file="footer.jsp"%>
+    <!-- final footer -->
+</div>
+<!-- final paginas -->
 
-                if (resposta == true) {
-                    window.location.href = "ExcluirTurmaServlet?turma=" + id;
-                }
-            }
-        </script>
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script language="Javascript">
+    function confirmacao(id) {
+        var resposta = confirm("Deseja realmente remover a turma?");
+        //  $('#modal_excluir').modal('show'); 
+        //document.getElementById("modal_excluir");
 
-        <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    </body>
+        if (resposta == true) {
+            window.location.href = "ExcluirTurmaServlet?turma=" + id;
+        }
+    }
+</script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
 </html>
 
 

@@ -44,84 +44,87 @@
 
         <div class="content-wrapper">
             <div class="container-fluid">
-                <!-- Conteudo-->
+                <!-- Conteudo--
 
                 <div class="row">
-                    <div id="caixa_conteudo">
-                        <h3>Dados Pessoais</h3>
-                        <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
-                        <div id="mensagem" style="height: 50px;">
-                            <c:if test="${mensagens.existeErros}">
-                                <div id="erro" class="alert">
-                                    <ul  id="ul_erro">
-                                        <c:forEach var="erro" items="${mensagens.erros}">
-                                            <li> ${erro} </li>
-                                            </c:forEach>
-                                    </ul>
-                                </div>
-                            </c:if>
+                    <div id="caixa_conteudo"> -->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="Menu?acao=Home">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Dados Pessoais</li>
+                    <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                </ol>
+                <div id="mensagem" style="height: 50px;">
+                    <c:if test="${mensagens.existeErros}">
+                        <div id="erro" class="alert">
+                            <ul  id="ul_erro">
+                                <c:forEach var="erro" items="${mensagens.erros}">
+                                    <li> ${erro} </li>
+                                    </c:forEach>
+                            </ul>
                         </div>
-                        <form method="post" action="${pageContext.request.contextPath}/EditarUsuario">                  
-                            <div class="form-group">
-                                <label for="nome">Nome:</label>
-                                <input type="text" class="form-control" name="nome" id="nome" value="${usuarioLogado.nome}" placeholder="Digite o nome" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="data_nascimento">Data de nascimento:</label>
-                                <input type="text" class="form-control" name="data_nascimento" id="data_nascimento" value="${usuarioLogado.dataNascimento}" placeholder="Digite a data de nascimento" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="telefone">Telefone:</label>
-                                <input type="tel" class="form-control" minlength="11" maxlength="11" name="telefone" id="telefone" value="${usuarioLogado.telefone}" placeholder="Digite o telefone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" name="email" id="email" value="${usuarioLogado.email}" placeholder="Digite o email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cpf">CPF:</label>
-                                <input type="text" class="form-control" minlength="11" maxlength="11" name="cpf" id="cpf" value="${usuarioLogado.cpf}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="login">Login:</label>
-                                <input type="text" class="form-control" name="login" id="login" value="${usuarioLogado.login}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-default" name="btn_editar" value="Salvar"/>
-                                <!-- btn btn-success btn-block -->
-                            </div>
-                        </form>
-                    </div>
+                    </c:if>
                 </div>
+                <form method="post" action="${pageContext.request.contextPath}/EditarUsuario">                  
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" name="nome" id="nome" value="${usuarioLogado.nome}" placeholder="Digite o nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de nascimento:</label>
+                        <input type="text" class="form-control" name="data_nascimento" id="data_nascimento" value="${usuarioLogado.dataNascimento}" placeholder="Digite a data de nascimento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" class="form-control" minlength="11" maxlength="11" name="telefone" id="telefone" value="${usuarioLogado.telefone}" placeholder="Digite o telefone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" id="email" value="${usuarioLogado.email}" placeholder="Digite o email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF:</label>
+                        <input type="text" class="form-control" minlength="11" maxlength="11" name="cpf" id="cpf" value="${usuarioLogado.cpf}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="login">Login:</label>
+                        <input type="text" class="form-control" name="login" id="login" value="${usuarioLogado.login}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" name="btn_editar" value="Salvar"/>
+                        <!-- btn btn-success btn-block -->
+                    </div>
+                </form>
 
-                <!-- div para dar altura-->
-                <div style="height: 1000px;"></div>
-            </div>
-            <!-- final conteudo-->
+        <!-- div para dar altura-->
+        <div style="height: 1000px;"></div>
+    </div>
+    <!-- final conteudo-->
 
-            <!-- footer -->
-            <%@include file="footer.jsp"%>
-            <!-- final footer -->
-        </div>
-        <!-- final paginas -->
+    <!-- footer -->
+    <%@include file="footer.jsp"%>
+    <!-- final footer -->
+</div>
+<!-- final paginas -->
 
-        <script language="Javascript">
-            function confirmacao(id) {
-                var resposta = confirm("Deseja realmente remover a turma?");
-                //  $('#modal_excluir').modal('show'); 
-                //document.getElementById("modal_excluir");
+<script language="Javascript">
+    function confirmacao(id) {
+        var resposta = confirm("Deseja realmente remover a turma?");
+        //  $('#modal_excluir').modal('show'); 
+        //document.getElementById("modal_excluir");
 
-                if (resposta == true) {
-                    window.location.href = "ExcluirTurmaServlet?turma=" + id;
-                }
-            }
-        </script>
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        if (resposta == true) {
+            window.location.href = "ExcluirTurmaServlet?turma=" + id;
+        }
+    }
+</script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-        <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    </body>
+<!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
 </html>
 
 
