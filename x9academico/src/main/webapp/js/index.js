@@ -1,7 +1,8 @@
 
 function verificaFormLogin(er, valor, input) {
    var btn = document.getElementById("btn_login");
-    if (er.test(valor)) {
+   var tamanho = valor.length;
+    if (er.test(valor) || tamanho<6) {
         //class="form-group has-error has-feedback"
         //elemento.style = "border: firebrick solid medium";
         //var div = input.parentNode;

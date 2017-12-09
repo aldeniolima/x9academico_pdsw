@@ -19,10 +19,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>X9-Acadêmico</title>
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <!--        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">-->
-        <!-- CSS-->
-        <link href="css/sb-admin.css" rel="stylesheet">
+        <!-- Bootstrap core CSS-->
+        <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="${pageContext.request.contextPath}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template-->
+        <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
+        <!-- JS -->
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
         <style>
             #caixa_conteudo{
                 height: auto;
@@ -38,7 +42,7 @@
         </style>
 
     </head>
-    <body class="fixed-nav sticky-footer" style="background-color: #e3f2fd;">
+    <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 
         <!-- NavBar-->
         <%@include file="navbar_prof.jsp"%>

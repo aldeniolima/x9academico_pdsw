@@ -31,4 +31,5 @@ br\edu\ifpe\recife\pdsw\model\Turma.class
 br\edu\ifpe\recife\pdsw\model\Turma_.class
 br\edu\ifpe\recife\pdsw\model\Responsavel_.class
 br\edu\ifpe\recife\pdsw\model\Usuario.class
+br\edu\ifpe\recife\pdsw\controller\EditarNotas.class
 br\edu\ifpe\recife\pdsw\model\Aluno_.class

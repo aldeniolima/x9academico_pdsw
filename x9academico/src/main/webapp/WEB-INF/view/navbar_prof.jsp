@@ -5,8 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<nav class="navbar navbar-expand-lg navbar-ligth fixed-top" id="inicioNav" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="inicioNav" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="Menu?acao=Home">X9-Acadêmico</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsivo" aria-controls="navbarResponsivo" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarResponsivo">
         <ul class="navbar-nav navbar-sidenav" id="fechaMenu">
             <img src="img/logo.png" width="150px" style="margin:0px auto">

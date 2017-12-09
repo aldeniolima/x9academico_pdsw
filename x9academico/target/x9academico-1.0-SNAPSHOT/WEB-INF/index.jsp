@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha:</label>
-                            <input class="form-control" name="senha" type="password" placeholder="Senha" onkeyup="verificaSenha(this)" data-toggle="popover" data-trigger="hover" data-content="Mínimo de 6, máximo 20 caracteres" required="required">
+                            <input class="form-control" name="senha" type="password" placeholder="Senha" min="6" max="20" onkeyup="verificaSenha(this)" data-toggle="popover" data-trigger="hover" data-content="Mínimo de 6, máximo 20 caracteres" required="required">
                         </div>
                         <input type="submit" id="btn_login" class="btn btn-primary btn-block" value="Entrar">
                     </form>
