@@ -4,12 +4,6 @@
     Author     : joselima
 --%>
 
-<%-- 
-    Document   : listar_alunos
-    Created on : 23/10/2017, 10:09:07
-    Author     : carlo
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -61,9 +55,9 @@
                     <li class="breadcrumb-item active">Alunos</li>
                     <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                 </ol>
-                <div id="mensagem" style="height: 50px;">
+                <div id="mensagem" style="height: 60px;">
                     <c:if test="${mensagens.existeErros}">
-                        <div id="erro" class="alert">
+                        <div id="erro" class="alert alert-danger text-center">
                             <ul  id="ul_erro">
                                 <c:forEach var="erro" items="${mensagens.erros}">
                                     <li> ${erro} </li>

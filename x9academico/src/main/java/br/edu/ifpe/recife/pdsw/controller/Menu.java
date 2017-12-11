@@ -2,6 +2,7 @@ package br.edu.ifpe.recife.pdsw.controller;
 
 import br.edu.ifpe.recife.pdsw.model.Aluno;
 import br.edu.ifpe.recife.pdsw.model.Professor;
+import br.edu.ifpe.recife.pdsw.model.Responsavel;
 import br.edu.ifpe.recife.pdsw.model.Turma;
 import java.io.IOException;
 import java.util.List;
@@ -126,9 +127,12 @@ public class Menu extends HttpServlet {
                         rd.forward(request, response);
                         break;
                     case "alterar_aluno":
+                        Object confir_editar = request.getSession().getAttribute("mensagens");
+                        request.setAttribute("mensagens", confir_editar);
                         request.setAttribute("listaTurmas", listarTurma());
                         rd = request.getRequestDispatcher("WEB-INF/view/alterar_aluno.jsp");
                         rd.forward(request, response);
+                        request.getSession().setAttribute("mensagens", null);
                         break;
                     case "listar_aluno":
                         request.setAttribute("listaTurmas", listarTurma());
@@ -193,9 +197,41 @@ public class Menu extends HttpServlet {
                         rd.forward(request, response);
                         break;
                 }
-
+                break;
             case "R":
+                switch (acao) {
+                    case "Home":
+                        rd = request.getRequestDispatcher("WEB-INF/view/menu_resp.jsp");
+                        rd.forward(request, response);
+                        break;
+                    case "listar_alunos":
+                        Responsavel responsavel = (Responsavel) usuario;
+                        request.setAttribute("listaAlunos", responsavel.getAlunos());
+                        rd = request.getRequestDispatcher("WEB-INF/view/listar_alunos_resp.jsp");
+                        rd.forward(request, response);
+                        break;
+                    case "notas":
+                        String idStringAln = request.getParameter("A");
+                        if (idStringAln.isEmpty()) {
+                            rd = request.getRequestDispatcher("WEB-INF/view/menu_resp.jsp");
+                        } else {
+                            Integer idAln = Integer.parseInt(idStringAln);
+                            Aluno aluno = buscarAln(idAln);
+                            if (aluno != null) {
+                                request.setAttribute("notas", aluno.getRelatorioParental());
+                                rd = request.getRequestDispatcher("WEB-INF/view/notas_resp.jsp");
+                            } else {
+                                rd = request.getRequestDispatcher("WEB-INF/view/menu_resp.jsp");
+                            }
+                        }
 
+                        rd.forward(request, response);
+                        break;
+                    case "dados_pessoais":
+                        rd = request.getRequestDispatcher("WEB-INF/view/dados_pessoais.jsp");
+                        rd.forward(request, response);
+                        break;
+                }
                 break;
         }
 

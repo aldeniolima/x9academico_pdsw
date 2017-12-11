@@ -24,9 +24,7 @@
     </head>
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
         <!-- NavBar-->
-
         <%@include file="navbar.jsp"%>
-
         <!-- NavBar-->
         <div class="content-wrapper">
             <div class="container-fluid">

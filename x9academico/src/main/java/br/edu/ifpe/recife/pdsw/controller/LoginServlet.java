@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import br.edu.ifpe.recife.pdsw.model.Usuario;
+import br.edu.ifpe.recife.pdsw.util.Erro;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,7 +48,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Erro erros = new Erro();
+        Erro erros = new Erro();
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         RequestDispatcher rd = null;
@@ -63,7 +64,6 @@ public class LoginServlet extends HttpServlet {
 
         } catch (NoResultException e) {
             usuario = null;
-            System.out.println("ERRO: " + e);
         }
 
         if (usuario != null) {
@@ -74,15 +74,15 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("Menu?acao=Home");
 
             } else {
-                //   erros.add("Login ou senha incorretos");
-                //   request.setAttribute("mensagens", erros);
+                   erros.add("Login ou senha incorretos");
+                   request.setAttribute("mensagens", erros);
                 rd = request.getRequestDispatcher("WEB-INF/index.jsp");
                 rd.forward(request, response);
                 //  response.sendRedirect("MainServlet");
             }
         } else {
-            //   erros.add("Login ou senha incorretos");
-            //   request.setAttribute("mensagens", erros);
+               erros.add("Login ou senha incorretos");
+               request.setAttribute("mensagens", erros);
             rd = request.getRequestDispatcher("WEB-INF/index.jsp");
             rd.forward(request, response);
             //  response.sendRedirect("MainServlet");

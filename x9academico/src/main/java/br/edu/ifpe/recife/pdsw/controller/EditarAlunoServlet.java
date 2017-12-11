@@ -7,6 +7,7 @@ package br.edu.ifpe.recife.pdsw.controller;
 
 import br.edu.ifpe.recife.pdsw.model.Aluno;
 import br.edu.ifpe.recife.pdsw.model.FormataData;
+import br.edu.ifpe.recife.pdsw.util.Erro;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,7 +41,6 @@ public class EditarAlunoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
     }
 
@@ -72,6 +72,7 @@ public class EditarAlunoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         RequestDispatcher rd = null;
+        Erro erros = new Erro();
 
         Aluno aluno = (Aluno) request.getSession(false).getAttribute("aluno_editado");
 
@@ -99,7 +100,14 @@ public class EditarAlunoServlet extends HttpServlet {
         alunoEditado.setRelatorioParental(aluno.getRelatorioParental());
         alunoEditado.setResponsavel(aluno.getResponsavel());
 
-        atualizar(alunoEditado);
+        
+        Aluno alunoVerifica = atualizar(alunoEditado);
+        if (alunoVerifica != null) {
+            erros.add("Dados atualizados");
+        } else {
+            erros.add("Os dados não foram atualizados");
+        }
+        request.getSession().setAttribute("mensagens", erros);
 
         response.sendRedirect("Menu?acao=alterar_aluno");
 
@@ -110,7 +118,7 @@ public class EditarAlunoServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void atualizar(Aluno entity) {
+    public Aluno atualizar(Aluno entity) {
 
         EntityManager em = null;
         EntityTransaction et = null;
@@ -122,10 +130,12 @@ public class EditarAlunoServlet extends HttpServlet {
             et.begin();
             em.merge(entity);
             et.commit();
+            return entity;
         } catch (Exception ex) {
             if (et != null && et.isActive()) {
                 et.rollback();
             }
+            return null;
         } finally {
             if (em != null) {
                 em.close();

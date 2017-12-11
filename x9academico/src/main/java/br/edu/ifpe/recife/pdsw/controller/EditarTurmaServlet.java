@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.edu.ifpe.recife.pdsw.model.Turma;
+import br.edu.ifpe.recife.pdsw.util.Erro;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -35,6 +36,7 @@ public class EditarTurmaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Erro erros = new Erro();
         RequestDispatcher rd = null;
         String turno = request.getParameter("turno");
         Integer sala = Integer.parseInt(request.getParameter("sala"));
@@ -43,28 +45,26 @@ public class EditarTurmaServlet extends HttpServlet {
 
         Turma turmaEdita = new Turma();
 
-        
         turmaEdita.setNumeroSala(sala);
         Turma turmaSessao = (Turma) request.getSession().getAttribute("turma_editada");
         turmaEdita.setQtdAluno(qtdAluno);
         turmaEdita.setIdTurma(turmaSessao.getIdTurma());
         turmaEdita.setSerie(turmaSessao.getSerie());
         turmaEdita.setTurno(turno);
-        
+
         turmaEdita.setProfessor(RecuperaProfId(idProf));
 
-        //Turma turmaVerifica = atualizar(turmaEdita);
-        atualizar(turmaEdita);
-       /*
+        Turma turmaVerifica = atualizar(turmaEdita);
+
         if (turmaVerifica != null) {
-            //     erros.add("Turma cadastrada");
+            erros.add("Dados atualizados");
         } else {
-            //     erros.add("Turma não cadastrada");
+            erros.add("Os dados não foram atualizados");
         }
-  //      request.getSession(false).setAttribute("turma_editada", null);
-*/
+        //      request.getSession(false).setAttribute("turma_editada", null);
+
 //        rd = request.getRequestDispatcher("Menu?acao=alterar_turmas");
- //       rd.forward(request, response);
+        //       rd.forward(request, response);
         response.sendRedirect("Menu?acao=alterar_turmas");
 
     }
@@ -123,20 +123,20 @@ public class EditarTurmaServlet extends HttpServlet {
             et.begin();
             em.merge(entity);
             et.commit();
+            return entity;
         } catch (Exception ex) {
             if (et != null && et.isActive()) {
                 et.rollback();
             }
+            return null;
         } finally {
             if (em != null) {
                 em.close();
             }
         }
-
-        return entity;
     }
-    
-        public Professor RecuperaProfId(int id) {
+
+    public Professor RecuperaProfId(int id) {
         EntityManager em = EMF.createEntityManager();
 
         String jpa = "SELECT u FROM Professor u Where u.idUsuario = ?1";

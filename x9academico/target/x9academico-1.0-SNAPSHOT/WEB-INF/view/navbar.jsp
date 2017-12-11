@@ -70,7 +70,7 @@
                     <i class="fa fa-id-card-o"></i>
                     <span class="nav-link-text">Dados Pessoais</span>
                 </a>
-            </li>
+            </li>                  
         </ul>
 
         <ul class="navbar-nav ml-auto">

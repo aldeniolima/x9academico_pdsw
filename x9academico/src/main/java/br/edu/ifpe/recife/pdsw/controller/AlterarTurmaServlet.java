@@ -22,6 +22,16 @@ public class AlterarTurmaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        RequestDispatcher rd = null;
+
+        Object confir_editar = request.getSession().getAttribute("mensagens");
+        request.setAttribute("mensagens", confir_editar);
+
+        request.setAttribute("listaTurma", listar());
+        rd = request.getRequestDispatcher("WEB-INF/view/alterar_turma.jsp");
+        rd.forward(request, response);
+        request.getSession().setAttribute("mensagens", null);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -37,14 +47,6 @@ public class AlterarTurmaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        RequestDispatcher rd = null;
-
-      
-
-
-        request.setAttribute("listaTurma", listar());
-        rd = request.getRequestDispatcher("WEB-INF/view/alterar_turma.jsp");
-        rd.forward(request, response);
 
     }
 
@@ -72,7 +74,7 @@ public class AlterarTurmaServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-      public List<Turma> listar() {
+    public List<Turma> listar() {
         EntityManager em = EMF.createEntityManager();
 
         String jpa = "SELECT u FROM Turma u";

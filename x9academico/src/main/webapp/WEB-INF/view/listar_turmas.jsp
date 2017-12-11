@@ -50,60 +50,58 @@
 
                 <div class="row">
                     <div id="caixa_conteudo">-->
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active">Turmas</li>
-                            <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
-                        </ol>
-
-                        
-                        <div id="mensagem" style="height: 50px;">
-                            <c:if test="${mensagens.existeErros}">
-                                <div id="erro" class="alert">
-                                    <ul  id="ul_erro">
-                                        <c:forEach var="erro" items="${mensagens.erros}">
-                                            <li> ${erro} </li>
-                                            </c:forEach>
-                                    </ul>
-                                </div>
-                            </c:if>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Turmas</li>
+                    <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
+                </ol>
+                <div id="mensagem" style="height: 60px;">
+                    <c:if test="${mensagens.existeErros}">
+                        <div id="erro" class="alert alert-danger text-center">
+                            <ul  id="ul_erro">
+                                <c:forEach var="erro" items="${mensagens.erros}">
+                                    <li> ${erro} </li>
+                                    </c:forEach>
+                            </ul>
                         </div>
+                    </c:if>
+                </div>
 
-                        <!-- Example DataTables Card-->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <i class="fa fa-table"></i> Turmas</div>
-                            <div class="card-body">
-                                <div class="table-responsive" id="lista_turmas">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Código</th>
-                                                <th>Série</th>
-                                                <th>Sala</th>
-                                                <th>Quantidade máxima de alunos</th>
-                                                <th>Turno</th>
-                                                <th>Professor</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach var="turma" items="${listaTurma}">
-                                                <tr>
-                                                    <td>${turma.idTurma}</td>
-                                                    <td>${turma.serie}</td>
-                                                    <td>${turma.numeroSala}</td>
-                                                    <td>${turma.qtdAluno}</td>
-                                                    <td>${turma.turno}</td>
-                                                    <td>${turma.professor.nome}</td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                <!-- Example DataTables Card-->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Turmas</div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="lista_turmas">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Série</th>
+                                        <th>Sala</th>
+                                        <th>Quantidade máxima de alunos</th>
+                                        <th>Turno</th>
+                                        <th>Professor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="turma" items="${listaTurma}">
+                                        <tr>
+                                            <td>${turma.idTurma}</td>
+                                            <td>${turma.serie}</td>
+                                            <td>${turma.numeroSala}</td>
+                                            <td>${turma.qtdAluno}</td>
+                                            <td>${turma.turno}</td>
+                                            <td>${turma.professor.nome}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+                </div>
 
 
 

@@ -10,6 +10,7 @@ import br.edu.ifpe.recife.pdsw.model.Endereco;
 import br.edu.ifpe.recife.pdsw.model.FormataData;
 import br.edu.ifpe.recife.pdsw.model.Professor;
 import br.edu.ifpe.recife.pdsw.model.Turma;
+import br.edu.ifpe.recife.pdsw.util.Erro;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -33,6 +34,7 @@ public class EditarProf extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Erro erros = new Erro();
         RequestDispatcher rd = null;
         Professor profEdit = new Professor();
         String nome = request.getParameter("nome");
@@ -61,12 +63,19 @@ public class EditarProf extends HttpServlet {
         profEdit.setTurmas(profSessao.getTurmas());
         Endereco end = profSessao.getEndereco();
         profEdit.setEndereco(end);
-       // Turma turma = profSessao.getTurmas();
-       // profEdit.setTurmas(turma);
+        // Turma turma = profSessao.getTurmas();
+        // profEdit.setTurmas(turma);
         profEdit.setSenha(profSessao.getSenha());
         // profEdit.setTipousuarios(profSessao.getTipousuarios());
 
         atualizar(profEdit);
+        Professor profVerifica = atualizar(profEdit);
+        if (profVerifica != null) {
+            erros.add("Dados atualizados");
+        } else {
+            erros.add("Os dados não foram atualizados");
+        }
+        request.getSession().setAttribute("mensagens", erros);
 
         response.sendRedirect("Menu?acao=alterar_prof");
 
@@ -123,17 +132,18 @@ public class EditarProf extends HttpServlet {
             et.begin();
             em.merge(entity);
             et.commit();
+            return entity;
         } catch (Exception ex) {
             if (et != null && et.isActive()) {
                 et.rollback();
             }
+            return null;
         } finally {
             if (em != null) {
                 em.close();
             }
         }
 
-        return entity;
     }
 
 }

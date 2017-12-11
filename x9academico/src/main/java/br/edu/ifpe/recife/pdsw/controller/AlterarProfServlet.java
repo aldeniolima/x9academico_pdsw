@@ -33,12 +33,16 @@ public class AlterarProfServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final static EntityManagerFactory EMF = Persistence.createEntityManagerFactory("x9academicoPU");
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd = null;
+        Object confir_editar = request.getSession().getAttribute("mensagens");
+        request.setAttribute("mensagens", confir_editar);
         request.setAttribute("listaProf", listar());
         rd = request.getRequestDispatcher("WEB-INF/view/alterar_professor.jsp");
         rd.forward(request, response);
+        request.getSession().setAttribute("mensagens", null);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -45,6 +45,17 @@
                     <div class="alert alert-danger text-center mt-3" id="alertIndex" style="display: none;">
                         <strong>Erro!</strong> Insira os dados corretamente.
                     </div>
+                    <div id="mensagem" style="height: 50px;">
+                        <c:if test="${mensagens.existeErros}">
+                            <div id="erro" class="alert alert-danger text-center mt-3">
+                                <ul  id="ul_erro">
+                                    <c:forEach var="erro" items="${mensagens.erros}">
+                                        <li> ${erro} </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </c:if>
+                    </div>
                 </div>
             </div>
         </div>

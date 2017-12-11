@@ -14,15 +14,13 @@
         <ul class="navbar-nav navbar-sidenav" id="fechaMenu">
             <img src="img/logo.png" width="150px" style="margin:0px auto">
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menuTurmas" data-parent="#fechaMenu">
-                    <i class="fa fa-users"></i>
-                    <span class="nav-link-text">Turmas</span>
-                    <!--<span class="glyphicon glyphicon-triangle-right"></span> -->
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menuAlunos" data-parent="#fechaMenu">
+                    <i class="fa fa-graduation-cap"></i>
+                    <span class="nav-link-text">Alunos</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="menuTurmas">
+                <ul class="sidenav-second-level collapse" id="menuAlunos">
                     <li>
-                        <i class="fa fa-users"></i>
-                        <a href="Menu?acao=listar_turmas">Listar Turmas</a>
+                        <a href="Menu?acao=listar_alunos">Listar Alunos</a>
                     </li>
                 </ul>
             </li>
@@ -44,4 +42,3 @@
         </ul>
     </div>
 </nav>
-

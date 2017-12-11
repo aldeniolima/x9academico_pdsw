@@ -39,7 +39,18 @@
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 
         <!-- NavBar-->
-        <%@include file="navbar.jsp"%>
+        <c:choose>
+            <c:when test = "${sessionScope.usuarioLogado.dtype.equals('A')}">
+                <%@include file="navbar.jsp"%>
+            </c:when>
+            <c:when test = "${sessionScope.usuarioLogado.dtype.equals('P')}">
+                <%@include file="navbar_prof.jsp"%>
+            </c:when>
+            <c:when test = "${sessionScope.usuarioLogado.dtype.equals('R')}">
+                <%@include file="navbar_resp.jsp"%>
+            </c:when>
+            <c:otherwise></c:otherwise>
+        </c:choose>
         <!-- NavBar-->
 
         <div class="content-wrapper">
@@ -55,9 +66,9 @@
                     <li class="breadcrumb-item active">Dados Pessoais</li>
                     <a href="Menu?acao=Home"> <img alt="voltar" src="img/previous2.png" style="height: 30px; width: 30px; float: right;"></a>
                 </ol>
-                <div id="mensagem" style="height: 50px;">
+                <div id="mensagem" style="height: 60px;">
                     <c:if test="${mensagens.existeErros}">
-                        <div id="erro" class="alert">
+                        <div id="erro" class="alert alert-danger text-center">
                             <ul  id="ul_erro">
                                 <c:forEach var="erro" items="${mensagens.erros}">
                                     <li> ${erro} </li>
@@ -97,34 +108,34 @@
                     </div>
                 </form>
 
-        <!-- div para dar altura-->
-        <div style="height: 1000px;"></div>
-    </div>
-    <!-- final conteudo-->
+                <!-- div para dar altura-->
+                <div style="height: 1000px;"></div>
+            </div>
+            <!-- final conteudo-->
 
-    <!-- footer -->
-    <%@include file="footer.jsp"%>
-    <!-- final footer -->
-</div>
-<!-- final paginas -->
+            <!-- footer -->
+            <%@include file="footer.jsp"%>
+            <!-- final footer -->
+        </div>
+        <!-- final paginas -->
 
-<script language="Javascript">
-    function confirmacao(id) {
-        var resposta = confirm("Deseja realmente remover a turma?");
-        //  $('#modal_excluir').modal('show'); 
-        //document.getElementById("modal_excluir");
+        <script language="Javascript">
+            function confirmacao(id) {
+                var resposta = confirm("Deseja realmente remover a turma?");
+                //  $('#modal_excluir').modal('show'); 
+                //document.getElementById("modal_excluir");
 
-        if (resposta == true) {
-            window.location.href = "ExcluirTurmaServlet?turma=" + id;
-        }
-    }
-</script>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+                if (resposta == true) {
+                    window.location.href = "ExcluirTurmaServlet?turma=" + id;
+                }
+            }
+        </script>
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-</body>
+        <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    </body>
 </html>
 
 
